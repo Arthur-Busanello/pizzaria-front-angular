@@ -1,1 +1,47 @@
-<p>adresslist works!</p>
+<div class="container">
+    <h3 class="alert alert-primary">Listagem de enderecos!</h3>
+   <button type="button" class="btn btn-primary" (click)="adicionar(modal1)">Adicionar</button> 
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Obs</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pedido of lista; let i = index">
+                        <th scope="row">{{ adress.id }}</th>
+                        <td> {{ adress.cidade }} </td>
+                        <td> {{ adress.rua }} </td>
+                        <td> {{ adress.numero_rua }} </td>
+                        <td> <button type="button" class="btn btn-primary" (click)="editar(modal1, adress, i)">Editar</button> </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<ng-template #modal1 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-adressdetails [adress]="objetoSelecionadoParaEdicao" (retorno)="addOuEditarAdress($event)" ></app-adressdetails>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
