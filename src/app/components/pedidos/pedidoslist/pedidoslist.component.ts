@@ -36,7 +36,7 @@ export class PedidoslistComponent {
         this.lista = lista;
       },
       error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        // alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
         console.error(erro);
       }
     });
