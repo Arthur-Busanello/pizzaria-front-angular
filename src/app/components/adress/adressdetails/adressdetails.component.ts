@@ -39,16 +39,16 @@ export class AdressdetailsComponent {
     adress.client.splice(index, 1);
   }
 
-  retornoAdressList(adress: Adress) {
-    if (adress.client === null) {
-      adress.client = [];
-    }
+  // retornoAdressList(adress: Adress) {
+  //   if (adress.client === null) {
+  //     adress.client = [];
+  //   }
 
-    adress.client.push(adress);
-    this.modalRef.dismiss();
-  }
+  //   adress.client.push(adress);
+  //   this.modalRef.dismiss();
+  // }
 
-  lançar(modal: any) {
-    this.modalRef = this.modalService.open(modal, { size: 'lg' });
-  }
+  // lançar(modal: any) {
+  //   this.modalRef = this.modalService.open(modal, { size: 'lg' });
+  // }
 }

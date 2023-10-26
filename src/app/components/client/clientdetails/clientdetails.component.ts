@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Adress } from 'src/app/models/adress';
 import { Client } from 'src/app/models/client';
 import { ClientService } from 'src/app/services/client.service';
 
@@ -24,54 +25,40 @@ export class ClientdetailsComponent {
   }
   salvar() {
     //ISSO AQUI SERVE PARA EDITAR OU ADICIONAR... TANTO FAZ
-  
+
     this.clientService.save(this.client).subscribe({
-      next: (client: Client) => { // QUANDO DÁ CERTO
+      next: client => { // QUANDO DÁ CERTO
         this.retorno.emit(client);
       },
-      error: (erro: any) => { // QUANDO DÁ ERRO
+      error: erro => { // QUANDO DÁ ERRO
         alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
         console.error(erro);
       }
     });
+
+
+
   }
-  
-  
-  // salvar() {
-  //   //ISSO AQUI SERVE PARA EDITAR OU ADICIONAR... TANTO FAZ
-
-  //   this.clientService.save(this.client).subscribe({
-  //     next: this.client => { // QUANDO DÁ CERTO
-  //        this.retorno.emit(this.client);
-  //     },
-  //     error: erro => { // QUANDO DÁ ERRO
-  //       alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
-  //       console.error(erro);       }
-  //    });
 
 
+  excluir(adress: Adress, indice: number) {
 
-// //   }
-
-
-// //   excluir(adress: Adress, indice: number) {
-
-// //     this.adress.client.splice(indice,1);
+    this.client.Adress.splice(indice,1);
     
-// //   }
+  }
 
-// //   retornoAdressList(adress: Adress) {
+  retornoAdressList(adress: Adress) {
 
-// //     if (this.pedido.produtos == null)
-// //       this.pedido.produtos = [];
+    if (this.adress.adress == null)
+      this.adress.adress = [];
 
-// //     this.adress.client.push(client);
-// //     this.modalRef.dismiss();
-// // }
+    this.adress.adress.push(adress);
+    this.modalRef.dismiss();
+}
 
 
-// //   lancar(modal: any) {
-// //     this.modalRef = this.modalService.open(modal, { size: 'lg' });
-// //   }
+  lancar(modal: any) {
+    this.modalRef = this.modalService.open(modal, { size: 'lg' });
+  }
 
 }
