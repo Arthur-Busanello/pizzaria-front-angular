@@ -19,7 +19,8 @@ export class SizeAddComponent {
 
   sizeForm = new FormGroup({
     sizeTamanho: new FormControl(),
-    sizeNsabor: new FormControl()
+    sizeNsabor: new FormControl(),
+    sizeNpedacos: new FormControl()
   });
 
   ngOnInit(): void {
@@ -30,7 +31,8 @@ export class SizeAddComponent {
   submitForm() {
     const size_dto = {
       tamanho:this.sizeForm.value.sizeTamanho,
-      nsabor:this.sizeForm.value.sizeNsabor
+      nsabor:this.sizeForm.value.sizeNsabor,
+      npedacos: this.sizeForm.value.sizeNpedacos
     }
 
 

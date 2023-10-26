@@ -26,6 +26,11 @@
                 <input type="text" name="sizeNsabor" class="form-control" formControlName="sizeNsabor">
               </div>
 
+              <div class=" col">
+                <label for="idade" class=" cisually-hidden">Numero de Pedaços</label>
+                <input type="text" name="sizeNpedacos" class="form-control" formControlName="sizeNpedacos">
+              </div>
+
 
               <div *ngIf="sizeForm.get('sizeTamanho')?.invalid && (sizeForm.get('sizeTamanho')?.touched || sizeForm.get('sizeTamanho')?.dirty)">
                 <p style="color: red"> </p>
