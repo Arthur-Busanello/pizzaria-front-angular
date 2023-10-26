@@ -21,6 +21,7 @@ import { SaborlistComponent } from './components/sabor/saborlist/saborlist.compo
 import { LoginComponent } from './components/sistema/login/login.component';
 import { SaborModule } from './sabor/sabor.module';
 import { SizeComponent } from './size/size.component';
+import { SizeModule } from './size/size.module';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { SizeComponent } from './size/size.component';
     ReactiveFormsModule,
     SaborModule,
     FormsModule,
-    NgbModalModule
+    NgbModalModule,
+    SizeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

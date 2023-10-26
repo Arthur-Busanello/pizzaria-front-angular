@@ -1,0 +1,49 @@
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#addPessoa">
+  Criar novo Tamanho
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addPessoa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Novo size</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body m-0">
+
+          <div class="container">
+            <form id="add-size" class=" row mt-3 gx-3 gy-2 align-items-center justify-content-center" (ngSubmit)=" submitForm()" [formGroup]="sizeForm">
+              <div class="  col">
+                <label for="nome" class=" cisually-hidden">Size</label>
+
+                <input type="text" name="sizeTamanho" class="form-control" formControlName="sizeTamanho">
+              </div>
+
+              <div class=" col">
+                <label for="idade" class=" cisually-hidden">Numero de sabores</label>
+                <input type="text" name="sizeNsabor" class="form-control" formControlName="sizeNsabor">
+              </div>
+
+
+              <div *ngIf="sizeForm.get('sizeTamanho')?.invalid && (sizeForm.get('sizeTamanho')?.touched || sizeForm.get('sizeTamanho')?.dirty)">
+                <p style="color: red"> </p>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button for="add-pessoa" type="submit"  data-bs-dismiss="modal" [disabled]="!sizeForm.valid" class="btn btn-primary"> Adicionar tamanho</button>
+              </div>
+
+
+            </form>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>

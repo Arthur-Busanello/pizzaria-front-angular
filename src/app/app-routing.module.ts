@@ -7,6 +7,7 @@ import { PedidoslistComponent } from './components/pedidos/pedidoslist/pedidosli
 import { SaborAddComponent } from './sabor/sabor-add/sabor-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SaborComponent } from './sabor/sabor.component';
+import { SizeComponent } from './size/size.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: 'full' },
@@ -15,13 +16,14 @@ const routes: Routes = [
     path: "admin", component: IndexComponent, children: [
       { path: "produtos", component: ProdutoslistComponent },
       { path: "pedidos", component: PedidoslistComponent },
-      {path: "sabor" , component: SaborComponent}
+      {path: "sabor" , component: SaborComponent},
+      {path: "size", component: SizeComponent}
     ],
-   
+
 
   },
-  
-  
+
+
 ];
 
 @NgModule({
