@@ -1,1 +1,58 @@
-<p>clientdetails works!</p>
+<form (ngSubmit)="salvar()">
+
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="client.nome">
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  
+  </form>
+  
+  <button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>
+
+    <button type="button" class="btn btn-primary" (click)="lancar(modal1)">cadastrar cliente</button> 
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">nome</th>
+                <th scope="col">phone</th>
+                <th scope="col">cpf</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let client of client.adress; let i = index">
+                <th scope="row">{{ client.id }}</th>
+                <td> {{ client.nome }} </td>
+                <td> {{ client.phone }} </td>
+                <td> {{ client.cpf }} </td>
+                <td> <button type="button" class="btn btn-primary" (click)="excluir(client,i)">Excluir</button> </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+
+
+
+<ng-template #modal1 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-clientlist [modoLancamento]="true" (retorno)="retornoClientlist($event)" ></app-clientlist>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

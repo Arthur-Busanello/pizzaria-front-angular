@@ -6,56 +6,49 @@ import { AdressService } from 'src/app/services/adress.service';
 @Component({
   selector: 'app-adressdetails',
   templateUrl: './adressdetails.component.html',
-  styleUrls: ['./adressdetails.component.scss']
+  styleUrls: ['./adressdetails.component.scss'],
 })
 export class AdressdetailsComponent {
-  @Input() adress: Adress = new Adress();
+  @Input() adress!: Adress;
   @Output() retorno = new EventEmitter<Adress>();
 
   modalService = inject(NgbModal);
   modalRef!: NgbModalRef;
 
-  adressService = inject(AdressService);
+  addressService = inject(AdressService);
 
-  constructor() {
+  constructor() {}
 
-  }
   salvar() {
-    //ISSO AQUI SERVE PARA EDITAR OU ADICIONAR... TANTO FAZ
+    // This serves to edit or add, it doesn't matter
 
-    this.adressService.save(this.adress).subscribe({
-      next: this.adress => { // QUANDO DÁ CERTO
-        this.retorno.emit(this.adress);
+    this.addressService.save(this.adress).subscribe({
+      next: (adress) => {
+        // When it goes right
+        this.retorno.emit(adress);
       },
-      error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
-        console.error(erro);
-      }
+      error: (error: any) => {
+        // When it goes wrong
+        alert('Example of error/exception handling! Check the console for the error!');
+        console.error(error);
+      },
     });
-
-
-
   }
 
-
-  excluir(adress: Adress, indice: number) {
-
-    this.adress.client.splice(indice,1);
-    
+  excluir(adress: Adress, index: number) {
+    adress.client.splice(index, 1);
   }
 
   retornoAdressList(adress: Adress) {
+    if (adress.client === null) {
+      adress.client = [];
+    }
 
-    if (this.pedido.produtos == null)
-      this.pedido.produtos = [];
-
-    this.adress.client.push(client);
+    adress.client.push(adress);
     this.modalRef.dismiss();
-}
-
-
-  lancar(modal: any) {
-    this.modalRef = this.modalService.open(modal, { size: 'lg' });
   }
 
+  lançar(modal: any) {
+    this.modalRef = this.modalService.open(modal, { size: 'lg' });
+  }
 }

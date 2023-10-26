@@ -1,52 +1,57 @@
 <form (ngSubmit)="salvar()">
     <div class="mb-3">
-        <label for="exampleInputText1" class="form-label">Observações:</label>
-        <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
-            [(ngModel)]="adress.obs">
+      <label for="exampleInputText1" class="form-label">Observações:</label>
+      <input
+        type="text"
+        class="form-control"
+        name="exampleInputText1"
+        aria-describedby="emailHelp"
+        [(ngModel)]="adress.obs"
+      />
     </div>
-
-    <button type="button" class="btn btn-primary" (click)="lancar(modal1)">cadastrar endereco</button> 
-
+  
+    <button type="button" class="btn btn-primary" (click)="lancar(modal1)">
+      Cadastrar endereço
+    </button>
+  
     <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#ID</th>
-                <th scope="col">cidade</th>
-                <th scope="col">rua</th>
-                <th scope="col">numero da rua</th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let adress of client.adress; let i = index">
-                <th scope="row">{{ adress.id }}</th>
-                <td> {{ adress.cidade }} </td>
-                <td> {{ adress.rua }} </td>
-                <td> {{ adress.numero_rua }} </td>
-                <td> <button type="button" class="btn btn-primary" (click)="excluir(produto,i)">Excluir</button> </td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th scope="col">#ID</th>
+          <th scope="col">Cidade</th>
+          <th scope="col">Rua</th>
+          <th scope="col">Número da rua</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let adress of client.adress, let i = index">
+          <th scope="row">{{ .id }}</th>
+          <td>{{ adress.cidade }}</td>
+          <td>{{ adress.rua }}</td>
+          <td>{{ adress.numero_rua }}</td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="excluir(adress, i)">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
-
-
-
+  
     <button type="submit" class="btn btn-primary">Salvar</button>
-</form>
-
-
-
-
-<ng-template #modal1 let-modal>
+  </form>
+  
+  <ng-template #modal1 let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-       
-        <app-adresslist [modoLancamento]="true" (retorno)="retornoAdressList($event)" ></app-adresslist>
-        
+      <app-adresslist [modoLancamento]="true" (retorno)="retornoAdressList($event)"></app-adresslist>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
     </div>
-</ng-template>
+  </ng-template>
+  
