@@ -17,7 +17,8 @@
                         <td> {{ adress.cidade }} </td>
                         <td> {{ adress.rua }} </td>
                         <td> {{ adress.numero_rua }} </td>
-                        <td> <button type="button" class="btn btn-primary" (click)="editar(modal1, adress, i)">Editar</button> </td>
+                        <td *ngIf="!modoLancamento" > <button type="button" class="btn btn-primary" (click)="editar(modal1, adress, i)">Editar</button> </td>
+                        <td *ngIf="modoLancamento" > <button type="button" class="btn btn-primary" (click)="lancamento( adress)">Lançar</button> </td>
                     </tr>
                 </tbody>
             </table>

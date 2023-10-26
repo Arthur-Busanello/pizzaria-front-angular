@@ -10,14 +10,15 @@
                         <th scope="col">nome</th>
                         <th scope="col">phone</th>
                         <th scope="col">cpf</th>
+                        <th scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let client of lista; let i = index">
                         <th scope="row">{{ client.id }}</th>
                         <td> {{ client.nome }} </td>
-                        <!-- <td> {{ client.phone }} </td>
-                        <td> {{ client.cpf }} </td> -->
+                        <td> {{ client.phone }} </td>
+                        <td> {{ client.cpf }} </td>
                         <td> <button type="button" class="btn btn-primary" (click)="editar(modal1, client, i)">Editar</button> </td>
                     </tr>
                 </tbody>

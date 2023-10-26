@@ -38,6 +38,10 @@ export class AdressdetailsComponent {
   excluir(adress: Adress, index: number) {
     adress.client.splice(index, 1);
   }
+  lancar(modal: any) {
+    this.modalRef = this.modalService.open(modal, { size: 'lg' });
+  }
+
 
   // retornoAdressList(adress: Adress) {
   //   if (adress.client === null) {

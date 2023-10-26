@@ -5,24 +5,24 @@
             [(ngModel)]="client.nome">
     </div>
 
-    <button type="button" class="btn btn-primary" (click)="lancar(modal1)">Lançar cliente</button> 
+    <button type="button" class="btn btn-primary" (click)="lancar(modal1)">Lançar adress</button> 
 
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#ID</th>
-                <th scope="col">nome</th>
-                <th scope="col">phone</th>
-                <th scope="col">cpf</th>
+                <th scope="col">cidade</th>
+                <th scope="col">rua</th>
+                <th scope="col">numero_rua</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let adress of client.adress; let i = index">
-                <th scope="row">{{ client.id }}</th>
-                <td> {{ client.nome }} </td>
-                <td> {{ client.phone }} </td>
-                <td> {{ client.cpf }} </td>
+                <th scope="row">{{ adress.id }}</th>
+                <td> {{ adress.cidade }} </td>
+                <td> {{ adress.rua }} </td>
+                <td> {{ adress.numero_rua }} </td>
                 <td> <button type="button" class="btn btn-primary" (click)="excluir(adress,i)">Excluir</button> </td>
             </tr>
         </tbody>
@@ -43,7 +43,7 @@
     </div>
     <div class="modal-body">
        
-        <app-clientlist [lancar]="true" (retorno)="retornoClientlist($event)" ></app-clientlist>
+        <app-adresslist [modoLancamento]="true" (retorno)="retornoAdressList($event)" ></app-adresslist>
         
     </div>
     <div class="modal-footer">

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { NgbModal,NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Adress } from 'src/app/models/adress';
 import { AdressService } from 'src/app/services/adress.service';
@@ -12,6 +12,8 @@ export class AdresslistComponent {
 
   lista: Adress[] = [];
 
+  @Output() retorno = new EventEmitter<Adress>();
+  @Input() modoLancamento: boolean = false;
 
   objetoSelecionadoParaEdicao: Adress = new Adress();
   indiceSelecionadoParaEdicao!: number;
@@ -84,7 +86,9 @@ export class AdresslistComponent {
     this.modalService.dismissAll();
 
   }
-
+  lancamento(adress: Adress){
+    this.retorno.emit(adress);
+  }
 
 
 
