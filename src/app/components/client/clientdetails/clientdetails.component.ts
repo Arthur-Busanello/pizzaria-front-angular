@@ -11,7 +11,7 @@ import { ClientService } from 'src/app/services/client.service';
 })
 export class ClientdetailsComponent {
 
-  @Input() adress: Client = new Client();
+  @Input() client: Client = new Client();
   @Output() retorno = new EventEmitter<Client>();
 
   modalService = inject(NgbModal);
@@ -24,37 +24,34 @@ export class ClientdetailsComponent {
 
   }
   salvar() {
-    //ISSO AQUI SERVE PARA EDITAR OU ADICIONAR... TANTO FAZ
-
     this.clientService.save(this.client).subscribe({
-      next: client => { // QUANDO DÁ CERTO
+      next: (client: Client) => {
         this.retorno.emit(client);
       },
-      error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+      error: (erro: any) => {
         console.error(erro);
       }
     });
-
-
-
   }
 
-
-  excluir(adress: Adress, indice: number) {
-
-    this.client.Adress.splice(indice,1);
-    
+  editar(address: Adress, i: number) {
+    this.client.adress[i] = address;
+    this.salvar();
   }
 
-  retornoAdressList(adress: Adress) {
+  excluir(address: Adress, i: number) {
+    this.client.adress.splice(i, 1);
+    this.salvar();
+  }
 
-    if (this.adress.adress == null)
-      this.adress.adress = [];
+//   retornoAdressList(adress: Adress) {
 
-    this.adress.adress.push(adress);
-    this.modalRef.dismiss();
-}
+//     if (this.adress.adress == null)
+//       this.adress.adress = [];
+
+//     this.adress.adress.push(adress);
+//     this.modalRef.dismiss();
+// }
 
 
   lancar(modal: any) {
