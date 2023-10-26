@@ -1,5 +1,19 @@
 
-<h1>sabor works</h1>
+<div class="container col-8 d-flex flex-column">
 
-<sabor-add> 
-</sabor-add>   
+  <div class=" m-3">
+    <sabor-add (addSabor)="sabores.push($event)">
+
+    </sabor-add>
+
+  </div>
+
+  <app-sabor-list [sabores] = "sabores" >
+
+
+  </app-sabor-list>
+
+
+
+</div>
+

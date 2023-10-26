@@ -1,6 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { SaborService } from '../sabor.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { sabor } from 'src/app/models/sabor';
+import eventService from 'src/app/services/event.service';
+import { from, of } from 'rxjs';
+
 
 @Component({
   selector: 'sabor-add',
@@ -8,6 +12,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./sabor-add.component.scss']
 })
 export class SaborAddComponent {
+
+  @Output () addSabor = new EventEmitter<sabor>();
 
   saborService = inject(SaborService);
 
@@ -19,9 +25,10 @@ export class SaborAddComponent {
   });
 
   ngOnInit(): void {
-  
+
 
   }
+
 
   submitForm() {
     const sabor_dto = {
@@ -30,11 +37,20 @@ export class SaborAddComponent {
       descricao:this.saborForm.value.saborDescricao
     }
 
-     
 
-    this.saborService.addSabor(sabor_dto);
+
+
+
+     this.saborService.addSabor(sabor_dto).subscribe(sabor =>
+      {
+        eventService.emit("addSabor", sabor);
+        console.log("request enviada" + sabor);
+
+      })
+
     this.saborForm.reset();
-    console.log("request enviada" + sabor_dto);
+
+
 
 
   }
