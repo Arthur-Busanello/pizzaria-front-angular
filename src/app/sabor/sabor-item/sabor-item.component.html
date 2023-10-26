@@ -3,8 +3,8 @@
     <h5 class="mb-1">{{saborItem.nome}}</h5>
     <div class=" d-flex flex-column align-items-right">
       <h5>R$ {{saborItem.preco_adicional}}</h5>
-      <h5>ID: {{saborItem.id}}</h5>
-      <button (click)="abrirModal(content)" type="button" value="novoSabor">
+
+      <button (click)="abrirModal(content)" type="button" class="btn btn-primary" value="novoSabor">
         edit
       </button>
 
@@ -30,28 +30,33 @@
         <div class="  col">
           <label for="nome" class=" cisually-hidden">Sabor</label>
 
-          <input type="text" name="saborNome" class="form-control" formControlName="saborNome">
+          <input type="text"  name="saborNome" class="form-control" formControlName="saborNome">
         </div>
 
         <div class=" col">
           <label for="idade" class=" cisually-hidden">Descricao</label>
-          <input type="text" name="pessoaIdade" class="form-control" formControlName="saborDescricao">
+          <input type="text" name="saborDescricao" class="form-control" formControlName="saborDescricao">
         </div>
 
 
         <div class=" col">
-          <label for="idade" class=" cisually-hidden">Valor adicional</label>
-          <input type="text" name="pessoaIdade" class="form-control" formControlName="saborPreco_adicional">
+          <label for="idade" class=" cisually-hidden" >Valor adicional</label>
+          <input type="number" name="pessoaIdade" class="form-control" formControlName="saborPreco_adicional">
         </div>
 
 
 
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button for="add-pessoa" type="submit" data-bs-dismiss="modal" [disabled]="!saborForm.valid"
-            class="btn btn-primary"> Adicionar sabor</button>
+            class="btn btn-primary"> Editar Sabor</button>
+
+            <button for="add-pessoa"  (click)="deletar(); modal.close('Close click')"
+            class="btn btn-danger"> Delete</button>
+
         </div>
+
+
 
 
       </form>

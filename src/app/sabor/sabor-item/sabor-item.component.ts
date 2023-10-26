@@ -2,7 +2,8 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { sabor } from 'src/app/models/sabor';
 import { SaborService } from '../sabor.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import eventService from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-sabor-item',
@@ -14,7 +15,7 @@ export class SaborItemComponent implements OnInit {
   @Input()
   saborItem!: sabor;
 
-  id! : number;
+
 
 
   modalService = inject(NgbModal);
@@ -26,11 +27,18 @@ export class SaborItemComponent implements OnInit {
 
 
 
+    this.saborForm.setValue({saborNome: this.saborItem.nome, saborPreco_adicional: this.saborItem.preco_adicional, saborDescricao: this.saborItem.descricao});
+
+
+
+
+
+
   }
 
 
   saborForm = new FormGroup({
-    saborNome: new FormControl (),
+    saborNome: new FormControl ( ),
     saborPreco_adicional: new FormControl(),
     saborDescricao: new FormControl()
   });
@@ -39,12 +47,13 @@ export class SaborItemComponent implements OnInit {
 
 
   abrirModal(content: any) {
+
+
     this.modalService.open(content, { size: 'lg' });
     }
 
 
   submitForm() {
-
     const sabor_dto = {
       nome:this.saborForm.value.saborNome,
       preco_adicional:this.saborForm.value.saborPreco_adicional,
@@ -72,9 +81,11 @@ export class SaborItemComponent implements OnInit {
     //   })
 
     this.saborForm.reset();
+  }
 
-
-
+  deletar(){
+    eventService.emit("deleteSabor", this.saborItem);
+    this.saborService.deleteSabor(this.saborItem.id);
 
   }
 

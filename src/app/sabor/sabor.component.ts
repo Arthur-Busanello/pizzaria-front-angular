@@ -21,6 +21,17 @@ eventService.listen("addSabor", (sabor) => {
 
 });
 
+eventService.listen("deleteSabor", (sabor) => {
+
+  console.log("listening deleteSabor", sabor);
+
+
+  const index = this.sabores.findIndex((saborItem) => saborItem.nome === sabor.nome);
+  this.sabores.splice(index, 1);
+
+
+});
+
 
   };
 

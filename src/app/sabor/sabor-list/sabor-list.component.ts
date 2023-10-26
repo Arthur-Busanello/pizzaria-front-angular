@@ -8,10 +8,6 @@ import { SaborService } from '../sabor.service';
   styleUrls: ['./sabor-list.component.scss']
 })
 export class SaborListComponent {
-
-
  @Input() sabores : sabor[]  = [];
-
-
 
 }

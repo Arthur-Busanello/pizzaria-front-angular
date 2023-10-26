@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdressdetailsComponent } from './components/adress/adressdetails/adressdetails.component';
@@ -20,6 +20,7 @@ import { SabordetailsComponent } from './components/sabor/sabordetails/sabordeta
 import { SaborlistComponent } from './components/sabor/saborlist/saborlist.component';
 import { LoginComponent } from './components/sistema/login/login.component';
 import { SaborModule } from './sabor/sabor.module';
+import { SizeComponent } from './size/size.component';
 
 
 @NgModule({
@@ -40,8 +41,9 @@ import { SaborModule } from './sabor/sabor.module';
     SabordetailsComponent,
     SaborlistComponent,
     ProdutosdetailsComponent,
-    
-    
+    SizeComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { SaborModule } from './sabor/sabor.module';
     HttpClientModule,
     ReactiveFormsModule,
     SaborModule,
-    FormsModule 
+    FormsModule,
+    NgbModalModule
   ],
   providers: [],
   bootstrap: [AppComponent],
