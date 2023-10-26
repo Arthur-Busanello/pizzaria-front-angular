@@ -1,14 +1,16 @@
-import { Injectable, Output } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { sabor } from '../models/sabor';
+import { Injectable, inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { sabor } from '../models/sabor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaborService {
 
-  constructor(private http : HttpClient) { }
+  http = inject(HttpClient);
+
+  constructor() { };
 
   private getStandardOptions() : any {
     return {
@@ -36,18 +38,16 @@ export class SaborService {
     return this.http.get('http://localhost:8081/sabor/findall').pipe(catchError(this.handleError));
   }
 
+
+
+
+
   addSabor (sabor : any ) :any { 
 
     let options = this.getStandardOptions();
 
-    const sabor_dto = {
-      nome:sabor.nome,
-      preco_adicional:sabor.preco_adicional,
-      descricao:sabor.descricao
-    }
-
-
-    return this.http.post('http://localhost:8081/sabor',sabor_dto,options);
+  
+    return this.http.post('http://localhost:8081/sabor',sabor,options).subscribe();
     
   }
 

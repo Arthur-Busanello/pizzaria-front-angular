@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SaborService } from '../sabor.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -7,18 +7,9 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './sabor-add.component.html',
   styleUrls: ['./sabor-add.component.scss']
 })
-export class SaborAddComponent implements OnInit{
+export class SaborAddComponent {
 
-  constructor(
-    private sabor:SaborService
-  ) { }
-
-
-  
-  // id!: number;
-  // nome!: string;
-  // preco_adicional!: number;
-  // descricao!: string;
+  saborService = inject(SaborService);
 
 
   saborForm = new FormGroup({
@@ -39,7 +30,11 @@ export class SaborAddComponent implements OnInit{
       descricao:this.saborForm.value.saborDescricao
     }
 
-    this.sabor.addSabor(sabor_dto);
+     
+
+    this.saborService.addSabor(sabor_dto);
+    this.saborForm.reset();
+    console.log("request enviada" + sabor_dto);
 
 
   }
