@@ -5,6 +5,5 @@ export class Client {
     nome!: string;
     phone!: string;
     cpf!:string;
-    client!: Client[];
     adress!: Adress[];
 }
