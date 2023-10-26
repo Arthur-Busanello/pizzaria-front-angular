@@ -1,36 +1,39 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component , EventEmitter, Input, Output, inject} from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Pedido } from 'src/app/models/pedido';
-import { PedidosService } from 'src/app/services/pedidos.service';
+import { Entrega } from 'src/app/models/entrega';
+import { EntregaService } from 'src/app/services/entrega.service';
 
 @Component({
-  selector: 'app-pedidoslist',
-  templateUrl: './pedidoslist.component.html',
-  styleUrls: ['./pedidoslist.component.scss']
+  selector: 'app-entregalist',
+  templateUrl: './entregalist.component.html',
+  styleUrls: ['./entregalist.component.scss']
 })
-export class PedidoslistComponent {
+export class EntregalistComponent {
 
-  lista: Pedido[] = [];
+  lista: Entrega[] = [];
 
 
-  objetoSelecionadoParaEdicao: Pedido = new Pedido();
+  objetoSelecionadoParaEdicao: Entrega = new Entrega();
   indiceSelecionadoParaEdicao!: number;
 
   modalService = inject(NgbModal);
   modalRef!: NgbModalRef;
-  pedidosService = inject(PedidosService);
+  entregaService = inject(EntregaService);
 
   constructor() {
 
     this.listAll();
-    //this.exemploErro();
+    this.exemploErro();
+    this.adicionar;
+    this.editar;
+    this.addOuEditarEntrega;
 
   }
 
 
   listAll() {
 
-    this.pedidosService.listAll().subscribe({
+    this.entregaService.listAll().subscribe({
       next: lista => { // QUANDO DÁ CERTO
         this.lista = lista;
       },
@@ -44,7 +47,7 @@ export class PedidoslistComponent {
 
   exemploErro() {
 
-    this.pedidosService.exemploErro().subscribe({
+    this.entregaService.exemploErro().subscribe({
       next: lista => { // QUANDO DÁ CERTO
         this.lista = lista;
       },
@@ -64,30 +67,24 @@ export class PedidoslistComponent {
   // MÉTODOS DA MODAL
 
   adicionar(modal: any) {
-    this.objetoSelecionadoParaEdicao = new Pedido();
+    this.objetoSelecionadoParaEdicao = new Entrega();
     this.indiceSelecionadoParaEdicao = -1;
 
     this.modalRef = this.modalService.open(modal, { size: 'md' });
   }
 
-  editar(modal: any, pedido: Pedido, indice: number) {
-    this.objetoSelecionadoParaEdicao = Object.assign({}, pedido); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
+  editar(modal: any, entrega: Entrega, indice: number) {
+    this.objetoSelecionadoParaEdicao = Object.assign({}, entrega); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
     this.indiceSelecionadoParaEdicao = indice;
 
     this.modalRef = this.modalService.open(modal, { size: 'md' });
   }
 
-  addOuEditarPedido(pedido: Pedido) {
+  addOuEditarEntrega(entrega: Entrega) {
 
     this.listAll();
 
     this.modalService.dismissAll();
 
   }
-
-
-
-
-
-
 }

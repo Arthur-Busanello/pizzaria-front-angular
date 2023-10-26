@@ -1,29 +1,29 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Adress } from '../models/adress';
+import { Entrega } from '../models/entrega';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdressService {
+export class EntregaService {
 
-  API: string = 'http://localhost:8081/adress';
+  API: string = 'http://localhost:8081/delivery';
   http = inject(HttpClient);
 
   constructor() { }
 
 
-  listAll(): Observable<Adress[]> {
-    return this.http.get<Adress[]>(this.API);
+  listAll(): Observable<Entrega[]> {
+    return this.http.get<Entrega[]>(this.API);
   }
 
-  save(adress: Adress): Observable<Adress> {
-    return this.http.post<Adress>(this.API, adress);
+  save(entrega: Entrega): Observable<Entrega> {
+    return this.http.post<Entrega>(this.API, entrega);
   }
 
-  exemploErro(): Observable<Adress[]> {
-    return this.http.get<Adress[]>(this.API + '/erro');
+  exemploErro(): Observable<Entrega[]> {
+    return this.http.get<Entrega[]>(this.API + '/erro');
   }
 
 

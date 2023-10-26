@@ -20,6 +20,8 @@ import { ClientdetailsComponent } from './components/client/clientdetails/client
 import { ClientlistComponent } from './components/client/clientlist/clientlist.component';
 import { SabordetailsComponent } from './components/sabor/sabordetails/sabordetails.component';
 import { SaborlistComponent } from './components/sabor/saborlist/saborlist.component';
+import { EntregadetailsComponent } from './components/entrega/entregadetails/entregadetails.component';
+import { EntregalistComponent } from './components/entrega/entregalist/entregalist.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { SaborlistComponent } from './components/sabor/saborlist/saborlist.compo
     ClientdetailsComponent,
     ClientlistComponent,
     SabordetailsComponent,
-    SaborlistComponent
+    SaborlistComponent,
+    EntregadetailsComponent,
+    EntregalistComponent
   ],
   imports: [
     BrowserModule,
