@@ -35,7 +35,7 @@ import { SaborlistComponent } from './components/sabor/saborlist/saborlist.compo
     AdressdetailsComponent,
     AdresslistComponent,
     ClientdetailsComponent,
-    ClientlistComponent,
+     ClientlistComponent,
     SabordetailsComponent,
     SaborlistComponent
   ],

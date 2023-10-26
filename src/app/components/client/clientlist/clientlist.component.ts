@@ -1,18 +1,26 @@
-import { Component, inject } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, NgModule, inject } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Client } from 'src/app/models/client';
 import { ClientService } from 'src/app/services/client.service';
 
 @Component({
-  selector: 'app-clientlist',
+  // selector: 'app-clientlist',
   templateUrl: './clientlist.component.html',
   styleUrls: ['./clientlist.component.scss']
 })
+// @NgModule({
+//   declarations: [
+//     ClientlistComponent,
+//   ],
+//   imports: [],
+//   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+// })
+
 export class ClientlistComponent {
 
   lista: Client[] = [];
 
-
+  lancar: boolean = false;
   objetoSelecionadoParaEdicao: Client = new Client();
   indiceSelecionadoParaEdicao!: number;
 
@@ -20,6 +28,7 @@ export class ClientlistComponent {
   modalRef!: NgbModalRef;
   clientService = inject(ClientService);
 
+  
   constructor() {
 
     this.listAll();

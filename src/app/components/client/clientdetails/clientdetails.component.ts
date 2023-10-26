@@ -44,14 +44,14 @@ export class ClientdetailsComponent {
     this.salvar();
   }
 
-//   retornoAdressList(adress: Adress) {
+ retornoAdressList(adress: Adress) {
 
-//     if (this.adress.adress == null)
-//       this.adress.adress = [];
+    if (this.client.adress == null)
+      this.client.adress = [];
 
-//     this.adress.adress.push(adress);
-//     this.modalRef.dismiss();
-// }
+    this.client.adress.push(adress);
+    this.modalRef.dismiss();
+ }
 
 
   lancar(modal: any) {

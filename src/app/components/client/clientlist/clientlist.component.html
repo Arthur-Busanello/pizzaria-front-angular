@@ -16,8 +16,8 @@
                     <tr *ngFor="let client of lista; let i = index">
                         <th scope="row">{{ client.id }}</th>
                         <td> {{ client.nome }} </td>
-                        <td> {{ client.phone }} </td>
-                        <td> {{ client.cpf }} </td>
+                        <!-- <td> {{ client.phone }} </td>
+                        <td> {{ client.cpf }} </td> -->
                         <td> <button type="button" class="btn btn-primary" (click)="editar(modal1, client, i)">Editar</button> </td>
                     </tr>
                 </tbody>
@@ -27,5 +27,18 @@
         </div>
     </div>
 </div>
-
+<ng-template #modal1 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-clientdetails [client]="objetoSelecionadoParaEdicao" (retorno)="addOuEditarClient($event)" ></app-clientdetails>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
 
