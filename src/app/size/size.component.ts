@@ -26,7 +26,7 @@ eventService.listen("deleteSize", (size) => {
   console.log("listening deleteSize", size);
 
 
-  const index = this.sizes.findIndex((sizeItem) => sizeItem.nome === size.nome);
+  const index = this.sizes.findIndex((sizeItem) => sizeItem.tamanho === size.tamanho);
   this.sizes.splice(index, 1);
 
 

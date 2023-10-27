@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import options from 'cheerio/lib/options';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { size } from '../models/size';
 
