@@ -8,7 +8,7 @@ import { Adress } from '../models/adress';
 })
 export class AdressService {
 
-  API: string = 'http://localhost:8080/api/adress';
+  API: string = 'http://localhost:8081/Adress';
   http = inject(HttpClient);
 
   constructor() { }

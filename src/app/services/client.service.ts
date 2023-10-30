@@ -11,7 +11,7 @@ export class ClientService {
     throw new Error('Method not implemented.');
   }
 
-  API: string = 'http://localhost:8080/api/client';
+  API: string = 'http://localhost:8081/client';
   http = inject(HttpClient);
 
   constructor() { }
