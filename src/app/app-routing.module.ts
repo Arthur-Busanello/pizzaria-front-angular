@@ -11,7 +11,7 @@ import { SizeComponent } from './size/size.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { NovoPedidoomponent } from './pedido/novo-pedido/novo-pedido.component';
 
-import { PedidoslistComponent } from './components/pedidos/pedidoslist/pedidoslist.component';
+// import { PedidoslistComponent } from './components/pedidos/pedidoslist/pedidoslist.component';
 import { AdresslistComponent } from './components/adress/adresslist/adresslist.component';
 import { ClientlistComponent } from './components/client/clientlist/clientlist.component';
 
@@ -30,14 +30,14 @@ const routes: Routes = [
   },
 
 
-      { path: "pedidos", component: PedidoslistComponent },
+      // { path: "pedidos", component: PedidoslistComponent },
       { path: "adress", component: AdresslistComponent },
       { path: "client", component: ClientlistComponent },
     ]
-  }
+  
 
 
-];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes),
