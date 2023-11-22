@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { sabor } from 'src/app/models/sabor';
+import { Sabor } from 'src/app/models/sabor';
 import { SaborService } from '../sabor.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import eventService from 'src/app/services/event.service';
@@ -13,7 +13,7 @@ import eventService from 'src/app/services/event.service';
 export class SaborItemComponent implements OnInit {
 
   @Input()
-  saborItem!: sabor;
+  saborItem!: Sabor;
 
 
 

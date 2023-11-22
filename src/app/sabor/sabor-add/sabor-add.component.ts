@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { SaborService } from '../sabor.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { sabor } from 'src/app/models/sabor';
+import { Sabor } from 'src/app/models/sabor';
 import eventService from 'src/app/services/event.service';
 
 
@@ -12,7 +12,7 @@ import eventService from 'src/app/services/event.service';
 })
 export class SaborAddComponent {
 
-  @Output () addSabor = new EventEmitter<sabor>();
+  @Output () addSabor = new EventEmitter<Sabor>();
 
   saborService = inject(SaborService);
 

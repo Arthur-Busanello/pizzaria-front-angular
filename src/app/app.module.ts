@@ -22,7 +22,6 @@ import { SizeComponent } from './size/size.component';
 import { SizeModule } from './size/size.module';
 import { PedidoModule } from './pedido/pedido.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +40,7 @@ import { PedidoModule } from './pedido/pedido.module';
     SabordetailsComponent,
     SaborlistComponent,
     ProdutosdetailsComponent,
-    SizeComponent
+    SizeComponent,
 
 
   ],
