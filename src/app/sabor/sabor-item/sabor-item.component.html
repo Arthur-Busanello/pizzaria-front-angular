@@ -1,0 +1,71 @@
+<a class="list-group-item list-group-item-action " aria-current="true">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">{{saborItem.nome}}</h5>
+    <div class=" d-flex flex-column align-items-right">
+      <h5>R$ {{saborItem.preco_adicional}}</h5>
+
+      <button (click)="abrirModal(content)" type="button" class="btn btn-primary" value="novoSabor">
+        edit
+      </button>
+
+    </div>
+
+  </div>
+  <small>{{saborItem.descricao}}</small>
+</a>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+
+
+
+    <div class="container">
+      <form id="add-sabor" class=" row mt-3 gx-3 gy-2 align-items-center justify-content-center"
+        (ngSubmit)=" submitForm()" [formGroup]="saborForm">
+        <div class="  col">
+          <label for="nome" class=" cisually-hidden">Sabor</label>
+
+          <input type="text"  name="saborNome" class="form-control" formControlName="saborNome">
+        </div>
+
+        <div class=" col">
+          <label for="idade" class=" cisually-hidden">Descricao</label>
+          <input type="text" name="saborDescricao" class="form-control" formControlName="saborDescricao">
+        </div>
+
+
+        <div class=" col">
+          <label for="idade" class=" cisually-hidden" >Valor adicional</label>
+          <input type="number" name="pessoaIdade" class="form-control" formControlName="saborPreco_adicional">
+        </div>
+
+
+
+
+        <div class="modal-footer">
+          <button for="add-pessoa" type="submit" data-bs-dismiss="modal" [disabled]="!saborForm.valid"
+            class="btn btn-primary"> Editar Sabor</button>
+
+            <button for="add-pessoa"  (click)="deletar(); modal.close('Close click')"
+            class="btn btn-danger"> Delete</button>
+
+        </div>
+
+
+
+
+      </form>
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+    </div>>
+
+</ng-template>
