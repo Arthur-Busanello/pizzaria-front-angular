@@ -1,29 +1,32 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Produto } from '../models/produto';
+import { Client } from '../models/client';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutosService {
+export class ClientService {
+  delete(id: any) {
+    throw new Error('Method not implemented.');
+  }
 
-  API: string = 'http://localhost:8081/api/produto';
+  API: string = 'http://localhost:8081/client';
   http = inject(HttpClient);
 
   constructor() { }
 
 
-  listAll(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(this.API);
+  listAll(): Observable<Client[]> {
+    return this.http.get<Client[]>(this.API);
   }
 
-  save(produto: Produto): Observable<Produto> {
-    return this.http.post<Produto>(this.API, produto);
+  save(client: Client): Observable<Client> {
+    return this.http.post<Client>(this.API, client);
   }
 
-  exemploErro(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(this.API + '/erro');
+  exemploErro(): Observable<Client[]> {
+    return this.http.get<Client[]>(this.API + '/erro');
   }
 
 

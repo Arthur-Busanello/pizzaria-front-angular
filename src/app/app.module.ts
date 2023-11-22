@@ -37,7 +37,7 @@ import { PedidoModule } from './pedido/pedido.module';
     AdressdetailsComponent,
     AdresslistComponent,
     ClientdetailsComponent,
-    ClientlistComponent,
+     ClientlistComponent,
     SabordetailsComponent,
     SaborlistComponent,
     ProdutosdetailsComponent,
