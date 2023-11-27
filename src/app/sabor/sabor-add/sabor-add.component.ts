@@ -3,7 +3,6 @@ import { SaborService } from '../sabor.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Sabor } from 'src/app/models/sabor';
 import eventService from 'src/app/services/event.service';
-import { from, of } from 'rxjs';
 
 
 @Component({

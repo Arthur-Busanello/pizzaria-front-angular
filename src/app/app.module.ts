@@ -12,8 +12,6 @@ import { ClientlistComponent } from './components/client/clientlist/clientlist.c
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { IndexComponent } from './components/layout/index/index.component';
-import { PedidosdetailsComponent } from './components/pedidos/pedidosdetails/pedidosdetails.component';
-import { PedidoslistComponent } from './components/pedidos/pedidoslist/pedidoslist.component';
 import { ProdutosdetailsComponent } from './components/produtos/produtosdetails/produtosdetails.component';
 import { ProdutoslistComponent } from './components/produtos/produtoslist/produtoslist.component';
 import { SabordetailsComponent } from './components/sabor/sabordetails/sabordetails.component';
@@ -22,6 +20,7 @@ import { LoginComponent } from './components/sistema/login/login.component';
 import { SaborModule } from './sabor/sabor.module';
 import { SizeComponent } from './size/size.component';
 import { SizeModule } from './size/size.module';
+import { PedidoModule } from './pedido/pedido.module';
 
 
 @NgModule({
@@ -31,8 +30,8 @@ import { SizeModule } from './size/size.module';
     FooterComponent,
     IndexComponent,
     LoginComponent,
-    PedidoslistComponent,
-    PedidosdetailsComponent,
+    ProdutoslistComponent,
+    ProdutosdetailsComponent,
     ProdutoslistComponent,
     ProdutosdetailsComponent,
     AdressdetailsComponent,
@@ -42,7 +41,7 @@ import { SizeModule } from './size/size.module';
     SabordetailsComponent,
     SaborlistComponent,
     ProdutosdetailsComponent,
-    SizeComponent,
+    SizeComponent
 
 
   ],
@@ -55,6 +54,7 @@ import { SizeModule } from './size/size.module';
     SaborModule,
     FormsModule,
     NgbModalModule,
+    PedidoModule,
     SizeModule
     
   ],

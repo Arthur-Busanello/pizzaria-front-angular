@@ -42,7 +42,7 @@ export class SizeAddComponent {
      this.sizeService.addSize(size_dto).subscribe(size =>
       {
         eventService.emit("addSize", size_dto);
-        console.log("request enviada" + size_dto);
+        console.log("request enviada" + size);
 
       })
 
