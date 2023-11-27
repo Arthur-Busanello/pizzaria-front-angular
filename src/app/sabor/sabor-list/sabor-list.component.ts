@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { sabor } from 'src/app/models/sabor';
+import { Sabor } from 'src/app/models/sabor';
 import { SaborService } from '../sabor.service';
 
 @Component({
@@ -8,6 +8,6 @@ import { SaborService } from '../sabor.service';
   styleUrls: ['./sabor-list.component.scss']
 })
 export class SaborListComponent {
- @Input() sabores : sabor[]  = [];
+ @Input() sabores : Sabor[]  = [];
 
 }

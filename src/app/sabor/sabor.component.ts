@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { sabor } from '../models/sabor';
+import { Sabor } from '../models/sabor';
 import { SaborService } from './sabor.service';
 import eventService from '../services/event.service';
 
@@ -39,7 +39,7 @@ eventService.listen("deleteSabor", (sabor) => {
   sabores : any[]  = [];
 
   ngOnInit(): void {
-    this.saborService.getAllSabor().subscribe((sabor: sabor[]) => {
+    this.saborService.getAllSabor().subscribe((sabor: Sabor[]) => {
 
       this.sabores = sabor;
 

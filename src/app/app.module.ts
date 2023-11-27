@@ -56,6 +56,7 @@ import { SizeModule } from './size/size.module';
     FormsModule,
     NgbModalModule,
     SizeModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

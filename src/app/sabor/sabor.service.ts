@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { sabor } from '../models/sabor';
+import { Sabor } from '../models/sabor';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class SaborService {
     return this.http.get('http://localhost:8081/sabor/findall').pipe(catchError(this.handleError));
   }
 
-  addSabor (sabor : any ) : Observable<sabor> {
+  addSabor (sabor : any ) : Observable<Sabor> {
     let options = this.getStandardOptions();
    let sabores = this.http.post('http://localhost:8081/sabor',sabor,options);
 
@@ -52,7 +52,7 @@ export class SaborService {
   }
 
 
-  updateSabor (sabor : any, id : number ) :Observable<sabor> {
+  updateSabor (sabor : any, id : number ) :Observable<Sabor> {
     let options = this.getStandardOptions();
    let sabor_updated = this.http.put('http://localhost:8081/sabor/update?id='+id ,JSON.stringify(sabor),options);
 
