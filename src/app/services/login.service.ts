@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Login } from '../models/login';
-import { Usuario } from '../models/User';
+import { Usuario } from '../models/user';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  API: string = 'http://localhost:8080/api/login';
+  API: string = 'http://localhost:8081/api/login';
   http = inject(HttpClient);
 
   constructor() { }
