@@ -20,7 +20,6 @@ import { LoginComponent } from './components/sistema/login/login.component';
 import { SizeComponent } from './size/size.component';
 import { SizeModule } from './size/size.module';
 import { PedidoModule } from './pedido/pedido.module';
-import { HttpinterceptorService } from './interceptors/httpinterceptor.service';
 
 @NgModule({
   declarations: [
@@ -53,14 +52,7 @@ import { HttpinterceptorService } from './interceptors/httpinterceptor.service';
     SizeModule,
     PedidoModule
   ],
-  providers: [
-    HttpinterceptorService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpinterceptorService,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+  providers: [httpInterceptorProvider],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

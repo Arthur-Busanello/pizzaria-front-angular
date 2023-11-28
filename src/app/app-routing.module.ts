@@ -22,26 +22,28 @@ const routes: Routes = [
   {
     path: "admin", component: IndexComponent, children: [
       { path: "produtos", component: ProdutoslistComponent },
+
+
       {path: "sabor" , component: SaborlistComponent},
-      {path: "size", component: SizeComponent},
-      {path: "pedidos", component: PedidoComponent},
-      {path: "novoPedido", component: NovoPedidoomponent }],
+      { path: "size", component: SizeComponent },
+      { path: "pedidos", component: PedidoComponent },
+      { path: "novoPedido", component: NovoPedidoomponent },
+      { path: "adress", component: AdresslistComponent },
+      { path: "client", component: ClientlistComponent }]
+
   },
 
+  // { path: "pedidos", component: PedidoslistComponent },
+]
 
-      // { path: "pedidos", component: PedidoslistComponent },
-      { path: "adress", component: AdresslistComponent },
-      { path: "client", component: ClientlistComponent },
-    ]
-  
 
 
 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes),
-  ReactiveFormsModule
-],
+    ReactiveFormsModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
