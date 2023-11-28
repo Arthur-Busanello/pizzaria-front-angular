@@ -21,6 +21,9 @@ import { SizeComponent } from './size/size.component';
 import { SizeModule } from './size/size.module';
 import { PedidoModule } from './pedido/pedido.module';
 
+import { httpInterceptorProviders } from './interceptors/httpinterceptor.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +55,9 @@ import { PedidoModule } from './pedido/pedido.module';
     SizeModule,
     PedidoModule
   ],
-  providers: [httpInterceptorProvider],
+
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
+
 })
 export class AppModule { }
