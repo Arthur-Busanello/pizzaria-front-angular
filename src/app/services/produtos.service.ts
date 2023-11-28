@@ -8,7 +8,7 @@ import { Produto } from '../models/produto';
 })
 export class ProdutosService {
 
-  API: string = 'http://localhost:8081/api/produto';
+  API: string = 'http://localhost:8081/Item';
   http = inject(HttpClient);
 
   constructor() { }
