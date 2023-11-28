@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { item } from 'src/app/models/items';
-import { sabor } from 'src/app/models/sabor';
+import { Sabor } from 'src/app/models/sabor';
 import { size } from 'src/app/models/size';
 import { SaborService } from 'src/app/sabor/sabor.service';
 import eventService from 'src/app/services/event.service';
@@ -23,7 +23,7 @@ export class PizzaComponent implements OnInit {
 
 
 tamanhos : size[] = [];
-saboresList : sabor[]  = [];
+saboresList : Sabor[]  = [];
 
 
 
@@ -58,7 +58,7 @@ saboresList : sabor[]  = [];
     });
 
 
-    this.saborHttp.getAllSabor().subscribe((sabor: sabor[]) => {
+    this.saborHttp.getAllSabor().subscribe((sabor: Sabor[]) => {
 
       this.saboresList = sabor;
 

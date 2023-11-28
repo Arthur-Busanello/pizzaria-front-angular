@@ -1,4 +1,4 @@
-import { sabor } from "./sabor";
+import { Sabor } from "./sabor";
 import { size } from "./size";
 
 export class item {
@@ -10,7 +10,7 @@ export class item {
     tamanho!:size;
     extra!:string;
     remove!:string;
-    sabor!: sabor [];
+    sabor!: Sabor [];
 
     constructor(id: number |undefined, codigo : string  |undefined, preco : number  | undefined, pizza : boolean, tamanho : size  |undefined, extra : string  |undefined, remove : string  |undefined){};
 
