@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Client } from '../models/client';
 
@@ -7,6 +7,7 @@ import { Client } from '../models/client';
   providedIn: 'root'
 })
 export class ClientService {
+
   delete(id: any) {
     throw new Error('Method not implemented.');
   }
@@ -16,9 +17,8 @@ export class ClientService {
 
   constructor() { }
 
-
   listAll(): Observable<Client[]> {
-    return this.http.get<Client[]>(this.API);
+    return this.http.get<Client[]>(this.API+'/findall');
   }
 
   save(client: Client): Observable<Client> {

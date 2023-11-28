@@ -36,6 +36,7 @@ export class ClientlistComponent {
     this.clientService.listAll().subscribe({
       next: lista => { // QUANDO DÁ CERTO
         this.lista = lista;
+        console.log("LISTALL = 200OK");
       },
       error: erro => { // QUANDO DÁ ERRO
         alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
