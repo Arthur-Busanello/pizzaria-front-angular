@@ -15,7 +15,7 @@ export class AdressService {
 
 
   listAll(): Observable<Adress[]> {
-    return this.http.get<Adress[]>(this.API);
+    return this.http.get<Adress[]>(this.API+'/findall');
   }
 
   save(adress: Adress): Observable<Adress> {
