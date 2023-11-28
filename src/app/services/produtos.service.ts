@@ -1,55 +1,116 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Produto } from '../models/produto';
-
+import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
 export class ProdutosService {
 
-  API: string = 'http://localhost:8081/api/produto';
+  private baseURL = 'http://localhost:8081/api/produto';
   http = inject(HttpClient);
 
-  constructor() { }
+  constructor(private httpClient: HttpClient, private cookieService : CookieService) { }
 
+  token!: string;
 
-  listAll(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(this.API);
-  }
-
-  save(produto: Produto): Observable<Produto> {
-    return this.http.post<Produto>(this.API, produto);
-  }
-
-  exemploErro(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(this.API + '/erro');
+  private getStandardOptions() : any {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
   }
 
 
+  listAll() :any {
 
-  /*
-  CASO PRECISE ENVIAR REQUEST PARAMS, BASTA DECLARAR ASSIM E INCLUIR NA REQUISIÇÃO HTTP
+    this.token =  this.cookieService.get("JWT");
 
-  let params = new HttpParams()
-      .set('empresaId', empresaId.toString())
+    let options = this.getStandardOptions();
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+   
 
-  return this.http.get<Pessoa[]>(this.API, { params: params});
 
+    return this.httpClient.get(`${this.baseURL}/listAll`,options);
+  }
+ 
+
+  showStock(id:number) :any {
+
+    this.token =  this.cookieService.get("JWT");
+
+    let options = this.getStandardOptions();
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+   
+
+
+    return this.httpClient.get(`${this.baseURL}/show?id=${id}`,options);
+  }
+
+
+  save(newProduto: any): any {
+    this.token =  this.cookieService.get("JWT");
+
+    let options = this.getStandardOptions();
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+   
+
+
+
+    return this.httpClient.post(`${this.baseURL}/save`,JSON.stringify(newProduto) , options);
+  }
+
+  updateStock(id: number, stockData: any) {
+    let option = this.getStandardOptions();
+    console.log(stockData);
+    
+    option.headers = option.headers.set('Authorization', `Bearer ${this.token}`)
+    return this.httpClient.put(`${this.baseURL}/updateContent${id}`, stockData, option);
+  }
+
+  deleteStock(id: number): any {
+    let options = this.getStandardOptions();
+    
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+    console.log("delete-token:\t" + this.token);
+
+    console.log(options);
+
+    return this.httpClient.delete(`${this.baseURL}/deletecontent?id=${id}`,options);
+  }
+
+
+  createStockContent(addContent: any): any {
+    
+    this.token = this.cookieService.get("JWT");
+
+    let options = this.getStandardOptions();
+
+    console.log(this.token);
+
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+    return this.httpClient.post(`${this.baseURL }/addContent`, addContent,  options);
+}
+
+
+updateQuantidade(id: number, update: any): any {
   
-  
-  SE PRECISAR COLOCAR COISAS NO HEADER DA REQUISIÇÃO
+    
+  this.token = this.cookieService.get("JWT");
 
+  let options = this.getStandardOptions();
 
-      let headers = new HttpHeaders()
-      .set("Content-Type", "application/json");
+  console.log(this.token);
 
+  options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
 
-        return this.http.get<Pessoa[]>(this.API, { headers: headers});
+  return this.httpClient.put(`${this.baseURL }/updateContent?id=${id}`, update, options);
 
-
-
-  */
+}
 
 
 }
