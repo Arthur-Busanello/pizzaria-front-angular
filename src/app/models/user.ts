@@ -4,6 +4,5 @@ export class Usuario {
     username!: string;
     role!: string;
     token!: string;
-
-
 }
+

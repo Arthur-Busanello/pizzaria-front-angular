@@ -1,4 +1,5 @@
-import { Client } from "./client";
+
+ import { Client } from "./client";
 export class Adress {
     id!: number;
     cidade!: string;
@@ -6,4 +7,8 @@ export class Adress {
     numero_rua!:number;
      client!: Client[];
     adress!: Adress[];
+
 }
+
+
+

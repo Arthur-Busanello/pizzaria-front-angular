@@ -31,7 +31,7 @@ export class SaborService {
     return throwError(() => new Error('Falha em requisitar informações ao servidor, por favor tente novamente'));
   }
 
-
+ 
 
   getAllSabor () :any {
     return this.http.get('http://localhost:8081/sabor/findall').pipe(catchError(this.handleError));

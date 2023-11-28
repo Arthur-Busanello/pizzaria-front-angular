@@ -1,4 +1,6 @@
+
 import { Adress } from "../models/adress";
+
 export class Client {
     id!: number;
     nome!: string;
@@ -6,4 +8,6 @@ export class Client {
     cpf!:string;
     client!: Client[];
     adress!: Adress[];
+
 }
+

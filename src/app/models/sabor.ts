@@ -1,5 +1,4 @@
 
-
 export class Sabor {
 
     id!: number;
@@ -10,3 +9,5 @@ export class Sabor {
     constructor(id: number | undefined, nome: string, preco_adicional: number | undefined , decricao : string | undefined) {}
 
 } 
+
+

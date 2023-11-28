@@ -55,4 +55,6 @@ export class AdressdetailsComponent {
   // lançar(modal: any) {
   //   this.modalRef = this.modalService.open(modal, { size: 'lg' });
   // }
+
 }
+
