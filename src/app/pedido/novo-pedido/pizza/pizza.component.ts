@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { item } from 'src/app/models/items';
 import { Sabor } from 'src/app/models/sabor';
 import { size } from 'src/app/models/size';
-import { SaborService } from 'src/app/sabor/sabor.service';
+import { SaborService } from 'src/app/services/sabor.service';
 import eventService from 'src/app/services/event.service';
 import { SizeService } from 'src/app/size/size.service';
 
@@ -27,7 +26,7 @@ saboresList : Sabor[]  = [];
 
 
 
-  @Output () addPizza = new EventEmitter<item>();
+
 
   sizeHttp = inject(SizeService);
   saborHttp = inject(SaborService);
@@ -58,7 +57,7 @@ saboresList : Sabor[]  = [];
     });
 
 
-    this.saborHttp.getAllSabor().subscribe((sabor: Sabor[]) => {
+    this.saborHttp.listAll().subscribe((sabor: Sabor[]) => {
 
       this.saboresList = sabor;
 

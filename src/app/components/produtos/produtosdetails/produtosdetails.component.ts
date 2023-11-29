@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Produto } from 'src/app/models/produto';
+import { Sabor } from 'src/app/models/sabor';
 import { ProdutosService } from 'src/app/services/produtos.service';
 
 @Component({
@@ -11,12 +13,23 @@ export class ProdutosdetailsComponent {
 
   @Input() produto: Produto = new Produto();
   @Output() retorno = new EventEmitter<Produto>();
+  modalService = inject(NgbModal);
+  modalRef!: NgbModalRef;
 
   produtosService = inject(ProdutosService);
-
+  sabor: string = '';
+  saboresList: Sabor[] = [];
+ 
 
   constructor() {
-
+    this.produtosService.getSabor().subscribe({
+      next: (sabores: Sabor[]) => {
+        this.saboresList = sabores;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 
   salvar() {
@@ -32,8 +45,15 @@ export class ProdutosdetailsComponent {
       }
     });
 
+  }
+  onSaboresChange(produto: Produto, $event: any) {
+    // Update the produto.sabor property based on the selected value
+    this.produto.sabor = $event.target.value;
+  }
 
 
+  lancar(modal: any) {
+    this.modalRef = this.modalService.open(modal, { size: 'lg' });
   }
 
 }

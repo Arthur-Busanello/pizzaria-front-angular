@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,11 +17,12 @@ import { ProdutoslistComponent } from './components/produtos/produtoslist/produt
 import { SabordetailsComponent } from './components/sabor/sabordetails/sabordetails.component';
 import { SaborlistComponent } from './components/sabor/saborlist/saborlist.component';
 import { LoginComponent } from './components/sistema/login/login.component';
-import { SaborModule } from './sabor/sabor.module';
 import { SizeComponent } from './size/size.component';
 import { SizeModule } from './size/size.module';
 import { PedidoModule } from './pedido/pedido.module';
+
 import { httpInterceptorProviders } from './interceptors/httpinterceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -37,13 +38,11 @@ import { httpInterceptorProviders } from './interceptors/httpinterceptor.service
     AdressdetailsComponent,
     AdresslistComponent,
     ClientdetailsComponent,
-     ClientlistComponent,
+    ClientlistComponent,
     SabordetailsComponent,
     SaborlistComponent,
     ProdutosdetailsComponent,
-    SizeComponent,
-
-
+    SizeComponent
   ],
   imports: [
     BrowserModule,
@@ -51,14 +50,14 @@ import { httpInterceptorProviders } from './interceptors/httpinterceptor.service
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SaborModule,
     FormsModule,
     NgbModalModule,
     SizeModule,
     PedidoModule
-    
   ],
+
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
+
 })
 export class AppModule { }

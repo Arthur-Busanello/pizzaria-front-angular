@@ -1,30 +1,47 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Sabor } from '../models/sabor';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutosService {
+export class SaborService {
 
-  API: string = 'http://localhost:8081/api/sabor';
+  API: string = 'http://localhost:8081/saborDTO';
   http = inject(HttpClient);
 
   constructor() { }
 
-
   listAll(): Observable<Sabor[]> {
-    return this.http.get<Sabor[]>(this.API);
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+    return this.http.get<Sabor[]>(this.API+'/findall', { headers: headers });
   }
 
-  save(sabor: Sabor): Observable<Sabor> {
-    return this.http.post<Sabor>(this.API, sabor);
+  save(sabor: Sabor): Observable<Sabor> { 
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+    return this.http.post<Sabor>(this.API+'/create', sabor, { headers: headers });
   }
+  
+  update(sabor: Sabor): Observable<Sabor>{
+    const headers = new HttpHeaders()
+    .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+  return this.http.put<Sabor>(this.API, sabor, { headers: headers });
+  }
+
 
   exemploErro(): Observable<Sabor[]> {
-    return this.http.get<Sabor[]>(this.API + '/erro');
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+    return this.http.get<Sabor[]>(this.API + '/erro', { headers: headers });
   }
+
 
 
 
