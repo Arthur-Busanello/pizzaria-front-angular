@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { item } from 'src/app/models/items';
 import { Sabor } from 'src/app/models/sabor';
 import { size } from 'src/app/models/size';
 import { SaborService } from 'src/app/services/sabor.service';
@@ -27,7 +26,7 @@ saboresList : Sabor[]  = [];
 
 
 
-  @Output () addPizza = new EventEmitter<item>();
+
 
   sizeHttp = inject(SizeService);
   saborHttp = inject(SaborService);

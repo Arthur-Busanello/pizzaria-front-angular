@@ -17,14 +17,14 @@ export class SaborService {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 
-    return this.http.get<Sabor[]>(this.API, { headers: headers });
+    return this.http.get<Sabor[]>(this.API+'/findall', { headers: headers });
   }
 
   save(sabor: Sabor): Observable<Sabor> { 
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 
-    return this.http.post<Sabor>(this.API, sabor, { headers: headers });
+    return this.http.post<Sabor>(this.API+'/create', sabor, { headers: headers });
   }
   
   update(sabor: Sabor): Observable<Sabor>{
