@@ -21,6 +21,7 @@ export class AdresslistComponent {
   modalService = inject(NgbModal);
   modalRef!: NgbModalRef;
   adressService = inject(AdressService);
+  id!: number;
 
   constructor() {
 
@@ -74,7 +75,9 @@ export class AdresslistComponent {
   }
 
   editar(modal: any, adress: Adress, indice: number) {
-    this.objetoSelecionadoParaEdicao = Object.assign({}, adress); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
+    this.id = adress.id; 
+    this.objetoSelecionadoParaEdicao = Object.assign({}, adress); 
+    console.log(this.id);//clonando o objeto se for edição... pra não mexer diretamente na referência da lista
     this.indiceSelecionadoParaEdicao = indice;
 
     this.modalRef = this.modalService.open(modal, { size: 'md' });

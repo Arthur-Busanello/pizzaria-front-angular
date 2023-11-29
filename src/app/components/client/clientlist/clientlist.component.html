@@ -35,7 +35,7 @@
     </div>
     <div class="modal-body">
        
-        <app-clientdetails [client]="objetoSelecionadoParaEdicao" (retorno)="addOuEditarClient($event)" ></app-clientdetails>
+        <app-clientdetails [client]="objetoSelecionadoParaEdicao" [client_id] = "client_id" (retorno)="addOuEditarClient($event)" ></app-clientdetails>
         
     </div>
     <div class="modal-footer">

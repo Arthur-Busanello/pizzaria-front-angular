@@ -1,11 +1,18 @@
 <form (ngSubmit)="salvar()">
     <div class="mb-3">
-        <label for="exampleInputText1" class="form-label">Observações:</label>
+        <label for="exampleInputText1" class="form-label">nome:</label>
         <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
             [(ngModel)]="client.nome">
+            <label for="exampleInputText1" class="form-label">phone:</label>
+            <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
+            [(ngModel)]="client.phone">
+            <label for="exampleInputText1" class="form-label">CPF:</label>
+            <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
+            [(ngModel)]="client.cpf">
     </div>
 
     <button type="button" class="btn btn-primary" (click)="lancar(modal1)">Lançar adress</button> 
+    <button type="button" class="btn btn-secondary" (click)="update(client)">Editar</button>
 
     <table class="table table-striped">
         <thead>

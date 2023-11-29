@@ -11,6 +11,7 @@ import { ClientService } from 'src/app/services/client.service';
 })
 export class ClientdetailsComponent {
 
+  @Input() client_id!: number;
   @Input() client: Client = new Client();
   @Output() retorno = new EventEmitter<Client>();
 
@@ -34,9 +35,18 @@ export class ClientdetailsComponent {
     });
   }
 
-  editar(address: Adress, i: number) {
-    this.client.adress[i] = address;
-    this.salvar();
+  update(client:Client){
+    console.log(this.client_id)
+    this.clientService.edit(this.client , this.client_id).subscribe({
+      next: () => {
+        console.log("client edit is executed");
+        this.retorno.emit(client);
+      },
+      error: () => {
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(Error);
+      }
+    });
   }
 
   excluir(address: Adress, i: number) {

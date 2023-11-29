@@ -9,6 +9,7 @@ import { AdressService } from 'src/app/services/adress.service';
   styleUrls: ['./adressdetails.component.scss'],
 })
 export class AdressdetailsComponent {
+  @Input() id!: number;
   @Input() adress!: Adress;
   @Output() retorno = new EventEmitter<Adress>();
 
@@ -17,7 +18,7 @@ export class AdressdetailsComponent {
 
   addressService = inject(AdressService);
 
-  constructor() {}
+  constructor() { }
 
   salvar() {
     // This serves to edit or add, it doesn't matter
@@ -34,13 +35,27 @@ export class AdressdetailsComponent {
       },
     });
   }
+  editar(adress:Adress){
+    console.log(this.id)
+    this.addressService.edit(this.adress , this.id).subscribe({
+      next: () => {
+        console.log("edit is executed")
+        this.retorno.emit(adress);
+      },
+      error: () => {
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(Error);
+      }
+    });
+  }
 
-  excluir(adress: Adress, index: number) {
-    adress.client.splice(index, 1);
-  }
-  lancar(modal: any) {
-    this.modalRef = this.modalService.open(modal, { size: 'lg' });
-  }
+
+excluir(adress: Adress, index: number) {
+  adress.client.splice(index, 1);
+}
+lancar(modal: any) {
+  this.modalRef = this.modalService.open(modal, { size: 'lg' });
+}
 
 
   // retornoAdressList(adress: Adress) {
