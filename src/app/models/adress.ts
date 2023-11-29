@@ -4,7 +4,7 @@ export class Adress {
     cidade!: string;
     rua!: string;
     numero_rua!:number;
-     client!: Client[];
+    client!: Client[];
     adress!: Adress[];
 }
 
