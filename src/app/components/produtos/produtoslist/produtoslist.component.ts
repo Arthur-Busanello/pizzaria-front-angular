@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Produto } from 'src/app/models/produto';
+import { Sabor } from 'src/app/models/sabor';
 import { ProdutosService } from 'src/app/services/produtos.service';
 
 @Component({
@@ -23,6 +24,8 @@ export class ProdutoslistComponent {
   modalRef!: NgbModalRef;
   
   produtosService = inject(ProdutosService);
+  sabor: string = '';
+  saboresList: Sabor[] = [];
 
   constructor() {
 

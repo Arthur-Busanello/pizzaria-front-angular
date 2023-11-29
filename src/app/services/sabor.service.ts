@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Sabor } from '../models/sabor';
 
@@ -11,8 +11,14 @@ export class SaborService {
   API: string = 'http://localhost:8081/saborDTO';
   http = inject(HttpClient);
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
+  getSabores(): Observable<Sabor[]> {
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+    return this.httpClient.get<Sabor[]>(`${this.API}/findall`, { headers });
+  }
   listAll(): Observable<Sabor[]> {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
@@ -20,53 +26,24 @@ export class SaborService {
     return this.http.get<Sabor[]>(this.API+'/findall', { headers: headers });
   }
 
-  save(sabor: Sabor): Observable<Sabor> { 
+  save(sabor: Sabor): Observable<Sabor> {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 
-    return this.http.post<Sabor>(this.API+'/create', sabor, { headers: headers });
+    return this.httpClient.post<Sabor>(`${this.API}/create`, sabor, { headers });
   }
-  
-  update(sabor: Sabor): Observable<Sabor>{
+
+  update(sabor: Sabor): Observable<Sabor> {
     const headers = new HttpHeaders()
-    .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 
-  return this.http.put<Sabor>(this.API, sabor, { headers: headers });
+    return this.httpClient.put<Sabor>(`${this.API}/update`, sabor, { headers });
   }
-
 
   exemploErro(): Observable<Sabor[]> {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 
-    return this.http.get<Sabor[]>(this.API + '/erro', { headers: headers });
+    return this.httpClient.get<Sabor[]>(`${this.API}/erro`, { headers });
   }
-
-
-
-
-  /*
-  CASO PRECISE ENVIAR REQUEST PARAMS, BASTA DECLARAR ASSIM E INCLUIR NA REQUISIÇÃO HTTP
-
-  let params = new HttpParams()
-      .set('empresaId', empresaId.toString())
-
-  return this.http.get<Pessoa[]>(this.API, { params: params});
-
-  
-  
-  SE PRECISAR COLOCAR COISAS NO HEADER DA REQUISIÇÃO
-
-
-      let headers = new HttpHeaders()
-      .set("Content-Type", "application/json");
-
-
-        return this.http.get<Pessoa[]>(this.API, { headers: headers});
-
-
-
-  */
-
-
 }
