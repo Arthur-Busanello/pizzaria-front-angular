@@ -14,7 +14,7 @@ export class ClientlistComponent {
 
   lista: Client[] = [];
 
-
+  client_id!:number;
   objetoSelecionadoParaEdicao: Client = new Client();
   indiceSelecionadoParaEdicao!: number;
 
@@ -36,7 +36,7 @@ export class ClientlistComponent {
     this.clientService.listAll().subscribe({
       next: lista => { // QUANDO DÁ CERTO
         this.lista = lista;
-        console.log("LISTALL = 200OK");
+        console.log("LISTALL = OK")
       },
       error: erro => { // QUANDO DÁ ERRO
         alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
@@ -75,6 +75,8 @@ export class ClientlistComponent {
   }
 
   editar(modal: any, client: Client, indice: number) {
+    this.client_id = client.id;
+    console.log(this.client_id);
     this.objetoSelecionadoParaEdicao = Object.assign({}, client); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
     this.indiceSelecionadoParaEdicao = indice;
 

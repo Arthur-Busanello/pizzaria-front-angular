@@ -19,7 +19,7 @@
                         <td> {{ adress.cidade }} </td>
                         <td> {{ adress.rua }} </td>
                         <td> {{ adress.numero_rua }} </td>
-                        <td *ngIf="!modoLancamento" > <button type="button" class="btn btn-primary" (click)="editar(modal1, adress, i)">Editar</button> </td>
+                        <td *ngIf="!modoLancamento" > <button type="button" class="btn btn-primary" (click)="editar(modal1, adress, i )">Editar</button> </td>
                         <td *ngIf="modoLancamento" > <button type="button" class="btn btn-primary" (click)="lancamento( adress)">Lançar</button> </td>
                     </tr>
                 </tbody>
@@ -41,7 +41,7 @@
     </div>
     <div class="modal-body">
        
-        <app-adressdetails [adress]="objetoSelecionadoParaEdicao" (retorno)="addOuEditarAdress($event)" ></app-adressdetails>
+        <app-adressdetails [adress]="objetoSelecionadoParaEdicao" [id]="id" (retorno)="addOuEditarAdress($event)" ></app-adressdetails>
         
     </div>
     <div class="modal-footer">

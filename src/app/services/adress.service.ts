@@ -21,6 +21,9 @@ export class AdressService {
   save(adress: Adress): Observable<Adress> {
     return this.http.post<Adress>(this.API, adress);
   }
+  edit(adress: Adress , id : number) {
+    return this.http.put(this.API+'/update?id='+ id , adress);
+  }
 
   exemploErro(): Observable<Adress[]> {
     return this.http.get<Adress[]>(this.API + '/erro');
