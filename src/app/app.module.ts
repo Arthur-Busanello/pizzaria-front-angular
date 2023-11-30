@@ -17,7 +17,6 @@ import { ProdutoslistComponent } from './components/produtos/produtoslist/produt
 import { SabordetailsComponent } from './components/sabor/sabordetails/sabordetails.component';
 import { SaborlistComponent } from './components/sabor/saborlist/saborlist.component';
 import { LoginComponent } from './components/sistema/login/login.component';
-import { PedidoModule } from './pedido/pedido.module';
 
 import { httpInterceptorProviders } from './interceptors/httpinterceptor.service';
 import { ClientService } from './services/client.service';
