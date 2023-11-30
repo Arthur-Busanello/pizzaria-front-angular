@@ -5,10 +5,8 @@ export class Sabor {
     nome!: string;
     preco_adicional!: number;
     descricao!: string;
-  sabor: any;
+    sabor: any;
     
-    
-
 } 
 
 
