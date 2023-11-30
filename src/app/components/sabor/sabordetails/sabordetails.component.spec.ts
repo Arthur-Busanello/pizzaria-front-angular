@@ -19,7 +19,7 @@ describe('SabordetailsComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [SabordetailsComponent],
-      imports: [FormsModule, NgbModule, HttpClientTestingModule], // Add HttpClientTestingModule here
+      imports: [FormsModule, NgbModule, HttpClientTestingModule],
       providers: [
         { provide: SaborService, useValue: mockSaborService },
         { provide: NgbModal, useValue: mockModalService },
@@ -41,10 +41,10 @@ describe('SabordetailsComponent', () => {
       dismiss: jasmine.createSpy('dismiss'),
     } as unknown as NgbModalRef;
   
-    const mockNgbModal = { open: jasmine.createSpy('open').and.returnValue(mockModalRef) };
+    mockModalService.open.and.returnValue(mockModalRef);
   
     component.lancar({});
   
-    expect(mockNgbModal.open).toHaveBeenCalledOnceWith({}, { size: 'lg' });
+    expect(mockModalService.open).toHaveBeenCalledOnceWith({}, { size: 'lg' });
   });
 });

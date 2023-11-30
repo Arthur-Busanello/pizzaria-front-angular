@@ -7,7 +7,6 @@ import { ProdutoslistComponent } from './components/produtos/produtoslist/produt
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-// import { PedidoslistComponent } from './components/pedidos/pedidoslist/pedidoslist.component';
 import { AdresslistComponent } from './components/adress/adresslist/adresslist.component';
 import { ClientlistComponent } from './components/client/clientlist/clientlist.component';
 import { SaborlistComponent } from './components/sabor/saborlist/saborlist.component';

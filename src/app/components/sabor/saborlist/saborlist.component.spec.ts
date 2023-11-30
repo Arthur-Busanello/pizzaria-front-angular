@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing'; // Import HttpClientTestingModule
 import { SaborlistComponent } from './saborlist.component';
 
 describe('SaborlistComponent', () => {
@@ -8,7 +8,8 @@ describe('SaborlistComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SaborlistComponent]
+      declarations: [SaborlistComponent],
+      imports: [HttpClientTestingModule], // Add HttpClientTestingModule to the imports array
     });
     fixture = TestBed.createComponent(SaborlistComponent);
     component = fixture.componentInstance;
