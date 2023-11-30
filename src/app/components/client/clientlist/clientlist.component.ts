@@ -32,22 +32,25 @@ export class ClientlistComponent {
 
 
   listAll() {
-
-    this.clientService.listAll().subscribe({
-      next: lista => { // QUANDO DÁ CERTO
-        this.lista = lista;
-        console.log("LISTALL = OK")
-      },
-      error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
-        console.error(erro);
-      }
-    });
-
+    const listObservable = this.clientService.listAll();
+  
+    if (listObservable) {
+      listObservable.subscribe({
+        next: (lista) => {
+          this.lista = lista;
+          console.log("LISTALL = OK");
+        },
+        error: (erro) => {
+          console.error("Error fetching clients:", erro);
+          alert("Exemplo de tratamento de erro/exception! Observe o erro no console!");
+        },
+      });
+    } else {
+      console.error("listAll method returned undefined or is not an observable.");
+    }
   }
 
   exemploErro() {
-
     this.clientService.exemploErro().subscribe({
       next: lista => { // QUANDO DÁ CERTO
         this.lista = lista;
@@ -57,7 +60,6 @@ export class ClientlistComponent {
         console.error(erro);
       }
     });
-
   }
 
 

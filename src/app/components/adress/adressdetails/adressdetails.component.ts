@@ -9,6 +9,9 @@ import { AdressService } from 'src/app/services/adress.service';
   styleUrls: ['./adressdetails.component.scss'],
 })
 export class AdressdetailsComponent {
+  listAll() {
+    throw new Error('Method not implemented.');
+  }
   @Input() id!: number;
   @Input() adress!: Adress;
   @Output() retorno = new EventEmitter<Adress>();

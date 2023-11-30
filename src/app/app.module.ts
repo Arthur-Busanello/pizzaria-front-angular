@@ -17,11 +17,10 @@ import { ProdutoslistComponent } from './components/produtos/produtoslist/produt
 import { SabordetailsComponent } from './components/sabor/sabordetails/sabordetails.component';
 import { SaborlistComponent } from './components/sabor/saborlist/saborlist.component';
 import { LoginComponent } from './components/sistema/login/login.component';
-import { SizeComponent } from './size/size.component';
-import { SizeModule } from './size/size.module';
 import { PedidoModule } from './pedido/pedido.module';
 
 import { httpInterceptorProviders } from './interceptors/httpinterceptor.service';
+import { ClientService } from './services/client.service';
 
 
 @NgModule({
@@ -42,7 +41,7 @@ import { httpInterceptorProviders } from './interceptors/httpinterceptor.service
     SabordetailsComponent,
     SaborlistComponent,
     ProdutosdetailsComponent,
-    SizeComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -52,11 +51,10 @@ import { httpInterceptorProviders } from './interceptors/httpinterceptor.service
     ReactiveFormsModule,
     FormsModule,
     NgbModalModule,
-    SizeModule,
     PedidoModule
   ],
 
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders,ClientService],
   bootstrap: [AppComponent],
 
 })
