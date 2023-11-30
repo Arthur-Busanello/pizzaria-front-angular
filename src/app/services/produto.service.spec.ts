@@ -56,13 +56,13 @@ describe('ProdutosService', () => {
   });
 
   it('should save an produto via the API', () => {
-    const mockProduto: Produto = { id: 1,codigo: '123aa123',preco:3,tamanho:'g', extra:'nao',  remove:'nao',  sabor: []};
-
+    const mockProduto: Produto = { id: 1, codigo: '123aa123', preco: 3, tamanho: 'g', extra: 'nao', remove: 'nao', sabor: [] };
+  
     service.save(mockProduto).subscribe(savedProduto => {
       expect(savedProduto).toEqual(mockProduto);
     });
-
-    const request = httpMock.expectOne(service.API);
+  
+    const request = httpMock.expectOne('http://localhost:8081/Item/create');
     expect(request.request.method).toBe('POST');
     request.flush(mockProduto);
   });

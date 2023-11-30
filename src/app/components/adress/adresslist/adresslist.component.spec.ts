@@ -12,7 +12,7 @@ describe('AdresslistComponent', () => {
   let mockAdressService: jasmine.SpyObj<AdressService>;
   let mockNgbModal: jasmine.SpyObj<NgbModal>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(waitForAsync((done: DoneFn) => {
     mockAdressService = jasmine.createSpyObj<AdressService>('AdressService', ['listAll', 'save', 'edit', 'exemploErro']);
     mockNgbModal = jasmine.createSpyObj('NgbModal', ['open']);
 
@@ -27,6 +27,7 @@ describe('AdresslistComponent', () => {
     .then(() => {
       fixture = TestBed.createComponent(AdresslistComponent);
       component = fixture.componentInstance;
+      done(); // Notify Jasmine that asynchronous setup is complete
     });
   }));
 
@@ -34,32 +35,40 @@ describe('AdresslistComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call listAll method and populate lista on success', () => {
+  it('should call listAll method and populate lista on success', (done: DoneFn) => {
     const mockAdresses: Adress[] = [
       { id: 1, cidade: 'City1', rua: 'Street1', numero_rua: 123, client: [], adress: [] },
       { id: 2, cidade: 'City2', rua: 'Street2', numero_rua: 456, client: [], adress: [] },
     ];
 
-    component.lista = []; // Certifique-se de inicializar component.lista
+    component.lista = [];
 
     mockAdressService.listAll.and.returnValue(of(mockAdresses));
 
     component.listAll();
 
-    expect(mockAdressService.listAll).toHaveBeenCalled();
-    expect(component.lista).toEqual(mockAdresses);
+    // Use setTimeout to wait for the asynchronous operation to complete
+    setTimeout(() => {
+      expect(mockAdressService.listAll).toHaveBeenCalled();
+      expect(component.lista).toEqual(mockAdresses);
+      done(); // Notify Jasmine that the test is complete
+    });
   });
 
-  it('should handle error on listAll method', () => {
+  it('should handle error on listAll method', (done: DoneFn) => {
     const errorMessage = 'Error fetching addresses';
-    spyOn(window, 'alert'); // Mocking the window.alert method
+    spyOn(window, 'alert');
 
-    mockAdressService.listAll.and.returnValue(throwError({ message: errorMessage })); // Simulating an error using throwError
+    mockAdressService.listAll.and.returnValue(throwError({ message: errorMessage }));
 
     component.listAll();
 
-    expect(mockAdressService.listAll).toHaveBeenCalled();
-    expect(window.alert).toHaveBeenCalledWith(errorMessage);
+    // Use setTimeout to wait for the asynchronous operation to complete
+    setTimeout(() => {
+      expect(mockAdressService.listAll).toHaveBeenCalled();
+      expect(window.alert).toHaveBeenCalledWith(errorMessage);
+      done(); // Notify Jasmine that the test is complete
+    });
   });
 
   // Add more tests for other methods in AdresslistComponent as needed

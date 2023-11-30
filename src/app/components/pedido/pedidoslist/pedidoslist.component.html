@@ -12,7 +12,7 @@
                         <th scope="col">payment</th>
                         <th scope="col">status</th>
                         <th scope="col">description</th>
-                        <th scope="col">data</th>
+                        <th scope="col">client</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
@@ -24,7 +24,7 @@
                         <td> {{ pedido.payment }} </td>
                         <td> {{ pedido.status }} </td>
                         <td> {{ pedido.description }} </td>
-                        <td> {{ pedido.data }} </td>
+                        <td> {{ pedido.client }} </td>
                         <td *ngIf="!modoLancamento" > <button type="button" class="btn btn-primary" (click)="editar(modal1, pedido, i )">Editar</button> </td>
                         <td *ngIf="modoLancamento" > <button type="button" class="btn btn-primary" (click)="lancamento(pedido)">Lançar</button> </td>
                     </tr>
