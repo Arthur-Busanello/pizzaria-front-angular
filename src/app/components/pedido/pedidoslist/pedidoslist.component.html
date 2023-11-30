@@ -1,0 +1,52 @@
+<div class="container">
+    <h3 class="alert alert-primary">Listagem de Pedidos!</h3>
+    <button type="button" class="btn btn-primary" (click)="adicionar(modal1)">Adicionar</button>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">time</th>
+                        <th scope="col">day</th>
+                        <th scope="col">payment</th>
+                        <th scope="col">status</th>
+                        <th scope="col">description</th>
+                        <th scope="col">client</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pedido of lista; let i = index">
+                        <th scope="row">{{ pedido.id }}</th>
+                        <td> {{ pedido.time }} </td>
+                        <td> {{ pedido.day }} </td>
+                        <td> {{ pedido.payment }} </td>
+                        <td> {{ pedido.status }} </td>
+                        <td> {{ pedido.description }} </td>
+                        <td> {{ pedido.client }} </td>
+                        <td *ngIf="!modoLancamento" > <button type="button" class="btn btn-primary" (click)="editar(modal1, pedido, i )">Editar</button> </td>
+                        <td *ngIf="modoLancamento" > <button type="button" class="btn btn-primary" (click)="lancamento(pedido)">Lançar</button> </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+ <ng-template #modal1 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       
+        <app-pedidosdetails [pedido]="objetoSelecionadoParaEdicao" [pedido_id]="pedido_id" (retorno)="addOuEditarPedido($event)" ></app-pedidosdetails>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template> 

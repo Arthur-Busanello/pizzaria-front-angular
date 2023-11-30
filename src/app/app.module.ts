@@ -20,6 +20,8 @@ import { LoginComponent } from './components/sistema/login/login.component';
 
 import { httpInterceptorProviders } from './interceptors/httpinterceptor.service';
 import { ClientService } from './services/client.service';
+import { PedidoslistComponent } from './components/pedido/pedidoslist/pedidoslist.component';
+import { PedidosdetailsComponent } from './components/pedido/pedidosdetails/pedidosdetails.component';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import { ClientService } from './services/client.service';
     SabordetailsComponent,
     SaborlistComponent,
     ProdutosdetailsComponent,
+    PedidoslistComponent,
+    PedidosdetailsComponent,
   
   ],
   imports: [

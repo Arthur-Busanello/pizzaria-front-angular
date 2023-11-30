@@ -55,10 +55,14 @@ describe('LoginComponent', () => {
     // Arrange
     const errorMessage = 'Login failed';
     mockLoginService.logar.and.returnValue(throwError(errorMessage));
-
+  
+    // Spy on window.alert and console.error
+    spyOn(window, 'alert');
+    spyOn(console, 'error');
+  
     // Act
     component.logar();
-
+  
     // Assert
     expect(mockLoginService.logar).toHaveBeenCalled();
     expect(window.alert).toHaveBeenCalledWith(

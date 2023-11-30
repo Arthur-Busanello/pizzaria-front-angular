@@ -8,18 +8,18 @@ import { Pedido } from '../models/pedido';
 })
 export class PedidosService {
 
-  API: string = 'http://localhost:8081/api/pedido';
+  API: string = 'http://localhost:8081/Order';
   http = inject(HttpClient);
 
   constructor() { }
 
 
   listAll(): Observable<Pedido[]> {
-    return this.http.get<Pedido[]>(this.API);
+    return this.http.get<Pedido[]>(this.API+'/findall');
   }
 
   save(pedido: Pedido): Observable<Pedido> {
-    return this.http.post<Pedido>(this.API, pedido);
+    return this.http.post<Pedido>(this.API+'/create', pedido);
   }
 
   exemploErro(): Observable<Pedido[]> {

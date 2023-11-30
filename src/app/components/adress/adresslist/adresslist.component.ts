@@ -32,7 +32,7 @@ export class AdresslistComponent {
 
 
   listAll() {
-    if (this.adressService && this.adressService.listAll) {
+
       this.adressService.listAll().subscribe({
         next: lista => {
           this.lista = lista;
@@ -43,9 +43,6 @@ export class AdresslistComponent {
           console.error(erro);
         }
       });
-    } else {
-      console.error('AdressService or listAll method is undefined.');
-    }
   }
 
   exemploErro() {
