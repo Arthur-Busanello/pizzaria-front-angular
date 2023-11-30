@@ -26,11 +26,14 @@ export class ProdutosService {
       'Content-Type': 'application/json'
     });
 
-    return this.httpClient.get<Sabor[]>('http://localhost:3000/sabores', { headers });
+    return this.httpClient.get<Sabor[]>('http://localhost:3000/sabores/findall', { headers });
   }
 
   save(produto: Produto): Observable<Produto> {
-    return this.http.post<Produto>(this.API+'/create', produto);
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+    return this.httpClient.post<Produto>(`${this.API}/create`, produto, { headers });
   }
 
   exemploErro(): Observable<Produto[]> {

@@ -1,43 +1,43 @@
 <form (ngSubmit)="salvar()">
     <div class="mb-3">
-        <label for="exampleInputText1" class="form-label">Codigo:</label>
-        <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
-            [(ngModel)]="produto.codigo">
+      <label for="exampleInputText1" class="form-label">Codigo:</label>
+      <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
+          [(ngModel)]="produto.codigo">
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Valor:</label>
-        <input type="number" class="form-control" name="exampleInputPassword1" [(ngModel)]="produto.preco">
+      <label for="exampleInputPassword1" class="form-label">Valor:</label>
+      <input type="number" class="form-control" name="exampleInputPassword1" [(ngModel)]="produto.preco">
     </div>
-
-      <div class="input-group mb-3">
-        <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="produto.tamanho">
-          <option value="P">P</option>
-          <option value="M">M</option>
-          <option value="G">G</option>
-          <option value="GG">GG</option>
-        </select>
-        <div class="input-group-append">
-        </div>
-      </div>
-
-    
+  
+    <div class="input-group mb-3">
+      <select class="custom-select" id="inputGroupSelect02" name="tamanho" [(ngModel)]="produto.tamanho">
+        <option value="P">P</option>
+        <option value="M">M</option>
+        <option value="G">G</option>
+        <option value="GG">GG</option>
+      </select>
+      <div class="input-group-append"></div>
+    </div>
+  
     <div class="mb-3">
-        <label for="exampleInputText4" class="form-label">extras:</label>
-        <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
-            [(ngModel)]="produto.extra">
+      <label for="exampleInputText4" class="form-label">extras:</label>
+      <input type="text" class="form-control" name="exampleInputText4" aria-describedby="emailHelp"
+          [(ngModel)]="produto.extra">
     </div>
-
+  
     <div class="mb-3">
-        <label for="exampleInputText5" class="form-label">remover:</label>
-        <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
-            [(ngModel)]="produto.remove">
+      <label for="exampleInputText5" class="form-label">remover:</label>
+      <input type="text" class="form-control" name="exampleInputText5" aria-describedby="emailHelp"
+          [(ngModel)]="produto.remove">
     </div>
-    
+  
     <div class="d-flex flex-column">
-        <label for="sabor" class="cisually-hidden">Sabor</label>
-        <select [(ngModel)]="sabor" (ngModelChange)="onSaboresChange(produto, $event)">
-          <option *ngFor="let sabor of saboresList" [value]="sabor.id">{{sabor.nome}}</option>
-        </select>
-      </div>
+      <label for="nome" class="visually-hidden">Sabor</label>
+      <select [(ngModel)]="produto.sabor" (ngModelChange)="onSaboresChange($event)">
+        <option *ngFor="let sabor of saboresList" [value]="sabor.id">{{ sabor.nome }}</option>
+      </select>
+    </div>
+  
     <button type="submit" class="btn btn-primary">Salvar</button>
-</form>
+  </form>
+  

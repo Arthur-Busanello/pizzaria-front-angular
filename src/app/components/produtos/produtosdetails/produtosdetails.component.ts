@@ -1,28 +1,34 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Produto } from 'src/app/models/produto';
 import { Sabor } from 'src/app/models/sabor';
 import { ProdutosService } from 'src/app/services/produtos.service';
+import { SaborService } from 'src/app/services/sabor.service';
 
 @Component({
   selector: 'app-produtosdetails',
   templateUrl: './produtosdetails.component.html',
   styleUrls: ['./produtosdetails.component.scss']
 })
-export class ProdutosdetailsComponent {
+export class ProdutosdetailsComponent implements OnInit {
 
   @Input() produto: Produto = new Produto();
   @Output() retorno = new EventEmitter<Produto>();
-  modalService = inject(NgbModal);
   modalRef!: NgbModalRef;
-
-  produtosService = inject(ProdutosService);
-  sabor: string = '';
   saboresList: Sabor[] = [];
- 
 
-  constructor() {
-    this.produtosService.getSabor().subscribe({
+  constructor(
+    private modalService: NgbModal,
+    private produtosService: ProdutosService,
+    private saborService: SaborService
+  ) {}
+
+  ngOnInit() {
+    this.carregarSabores();
+  }
+
+  carregarSabores() {
+    this.saborService.getSabores().subscribe({
       next: (sabores: Sabor[]) => {
         this.saboresList = sabores;
       },
@@ -33,27 +39,24 @@ export class ProdutosdetailsComponent {
   }
 
   salvar() {
-    //ISSO AQUI SERVE PARA EDITAR OU ADICIONAR... TANTO FAZ
-
     this.produtosService.save(this.produto).subscribe({
-      next: produto => { // QUANDO DÁ CERTO
+      next: produto => {
         this.retorno.emit(produto);
+       
       },
-      error: erro => { // QUANDO DÁ ERRO
+      error: erro => {
         alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
         console.error(erro);
       }
     });
-
   }
-  onSaboresChange(produto: Produto, $event: any) {
+
+  onSaboresChange($event: any) {
     // Update the produto.sabor property based on the selected value
-    this.produto.sabor = $event.target.value;
+    this.produto.sabor = $event;
   }
-
 
   lancar(modal: any) {
     this.modalRef = this.modalService.open(modal, { size: 'lg' });
   }
-
 }

@@ -29,7 +29,7 @@ export class ClientService {
     return this.http.put(this.API+'/update?id='+ id, client);
   }
 
-  exemploErro(): Observable<Client[]> {
+  exemploErro(): Observable<any> {
     return this.http.get<Client[]>(this.API + '/erro');
   }
 

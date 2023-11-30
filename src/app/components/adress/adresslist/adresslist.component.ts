@@ -18,12 +18,12 @@ export class AdresslistComponent {
   objetoSelecionadoParaEdicao: Adress = new Adress();
   indiceSelecionadoParaEdicao!: number;
 
-  modalService = inject(NgbModal);
+
   modalRef!: NgbModalRef;
-  adressService = inject(AdressService);
+
   id!: number;
 
-  constructor() {
+  constructor(private modalService: NgbModal, private adressService: AdressService) {
 
     this.listAll();
     //this.exemploErro();
@@ -32,18 +32,20 @@ export class AdresslistComponent {
 
 
   listAll() {
-
-    this.adressService.listAll().subscribe({
-      next: lista => { // QUANDO DÁ CERTO
-        this.lista = lista;
-        console.log("LISTALL = 200OK")
-      },
-      error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
-        console.error(erro);
-      }
-    });
-
+    if (this.adressService && this.adressService.listAll) {
+      this.adressService.listAll().subscribe({
+        next: lista => {
+          this.lista = lista;
+          console.log("LISTALL = 200OK");
+        },
+        error: erro => {
+          alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+          console.error(erro);
+        }
+      });
+    } else {
+      console.error('AdressService or listAll method is undefined.');
+    }
   }
 
   exemploErro() {

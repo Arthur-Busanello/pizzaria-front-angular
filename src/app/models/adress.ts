@@ -6,6 +6,7 @@ export class Adress {
     numero_rua!:number;
     client!: Client[];
     adress!: Adress[];
-}
 
+    
+}
 
