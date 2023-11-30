@@ -51,7 +51,6 @@ import { ClientService } from './services/client.service';
     ReactiveFormsModule,
     FormsModule,
     NgbModalModule,
-    PedidoModule
   ],
 
   providers: [httpInterceptorProviders,ClientService],
