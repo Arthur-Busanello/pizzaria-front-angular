@@ -1,0 +1,64 @@
+<form (ngSubmit)="salvar()">
+    <div class="mb-3">
+        <label for="exampleInputText1" class="form-label">time:</label>
+        <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
+            [(ngModel)]="pedido.time">
+        <label for="exampleInputText1" class="form-label">day:</label>
+        <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
+            [(ngModel)]="pedido.day">
+        <label for="exampleInputText1" class="form-label">payment:</label>
+        <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
+            [(ngModel)]="pedido.payment">
+        <label for="exampleInputText1" class="form-label">status:</label>
+        <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
+            [(ngModel)]="pedido.status">
+        <label for="exampleInputText1" class="form-label">description:</label>
+        <input type="text" class="form-control" name="exampleInputText1" aria-describedby="emailHelp"
+            [(ngModel)]="pedido.description">
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="lancar(modal1)">Lançar client</button>
+    <!-- <button type="button" class="btn btn-secondary" (click)="update(pedido)">Editar</button> -->
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">nome</th>
+                <th scope="col">phone</th>
+                <th scope="col">cpf</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let client of pedido.client; let i = index">
+                <th scope="row">{{ client.id }}</th>
+                <td> {{ client.nome }} </td>
+                <td> {{ client.phone }} </td>
+                <td> {{ client.cpf }} </td>
+                <td> <button type="button" class="btn btn-primary" (click)="excluir(client,i)">Excluir</button> </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+
+
+
+<ng-template #modal1 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+
+        <app-clientlist [modoLancamento]="true" (retorno)="retornoClientList($event)"></app-clientlist>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

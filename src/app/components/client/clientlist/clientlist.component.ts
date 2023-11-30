@@ -17,6 +17,10 @@ export class ClientlistComponent {
   client_id!:number;
   objetoSelecionadoParaEdicao: Client = new Client();
   indiceSelecionadoParaEdicao!: number;
+  @Input() modoLancamento: boolean = false;
+  @Output() retorno = new EventEmitter<Client>();
+
+
 
   modalService = inject(NgbModal);
   modalRef!: NgbModalRef;
@@ -91,6 +95,9 @@ export class ClientlistComponent {
 
     this.modalService.dismissAll();
 
+  }
+  lancamento(client: Client){
+    this.retorno.emit(client);
   }
 
 }
