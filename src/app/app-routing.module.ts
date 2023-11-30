@@ -6,9 +6,6 @@ import { ProdutoslistComponent } from './components/produtos/produtoslist/produt
 
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { SizeComponent } from './size/size.component';
-import { PedidoComponent } from './pedido/pedido.component';
-import { NovoPedidoomponent } from './pedido/novo-pedido/novo-pedido.component';
 
 // import { PedidoslistComponent } from './components/pedidos/pedidoslist/pedidoslist.component';
 import { AdresslistComponent } from './components/adress/adresslist/adresslist.component';
@@ -25,9 +22,6 @@ const routes: Routes = [
 
 
       {path: "sabor" , component: SaborlistComponent},
-      { path: "size", component: SizeComponent },
-      { path: "pedidos", component: PedidoComponent },
-      { path: "novoPedido", component: NovoPedidoomponent },
       { path: "adress", component: AdresslistComponent },
       { path: "client", component: ClientlistComponent }]
 
