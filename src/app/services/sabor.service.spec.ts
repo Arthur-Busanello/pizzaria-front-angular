@@ -3,7 +3,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { SaborService } from './sabor.service';
 import { Sabor } from '../models/sabor';
 
-
 describe('SaborService', () => {
   let service: SaborService;
   let httpMock: HttpTestingController;
@@ -28,16 +27,8 @@ describe('SaborService', () => {
 
   it('should retrieve a list of sabor from the API', () => {
     const mockSabor: Sabor[] = [
-      {  id: 1,
-        nome: 'calabresa',
-        preco_adicional: 5,
-        descricao: 'tem calabresa',
-        sabor: [] },
-      {  id: 2,
-        nome: ' frango',
-        preco_adicional: 5,
-        descricao: 'tem frango',
-        sabor: [] },
+      { id: 1, nome: 'calabresa', preco_adicional: 5, descricao: 'tem calabresa', sabor: [] },
+      { id: 2, nome: 'frango', preco_adicional: 5, descricao: 'tem frango', sabor: [] },
     ];
 
     service.listAll().subscribe(sabor => {
@@ -50,18 +41,16 @@ describe('SaborService', () => {
   });
 
   it('should save an sabor via the API', () => {
-    const mockSabor: Sabor = { id: 1, nome: 'John Doe', preco_adicional: 5, descricao: 'tem frango',  sabor: [] };
+    const mockSabor: Sabor = { id: 1, nome: 'John Doe', preco_adicional: 5, descricao: 'tem frango', sabor: [] };
 
     service.save(mockSabor).subscribe(savedSabor => {
       expect(savedSabor).toEqual(mockSabor);
     });
 
-    const request = httpMock.expectOne(service.API);
+    const request = httpMock.expectOne(`${service.API}/create`); // Adjusted expectation
     expect(request.request.method).toBe('POST');
     request.flush(mockSabor);
   });
-
- 
 
   it('should handle an error from the API', () => {
     const errorMessage = 'Internal Server Error';

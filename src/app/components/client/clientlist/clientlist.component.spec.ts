@@ -5,7 +5,7 @@ import { ClientService } from 'src/app/services/client.service';
 import { of, throwError } from 'rxjs';
 import { Client } from 'src/app/models/client';
 import { fakeAsync, tick } from '@angular/core/testing';
-const errorMessage = 'Error fetching clients';
+
 describe('ClientlistComponent', () => {
   let component: ClientlistComponent;
   let fixture: ComponentFixture<ClientlistComponent>;
@@ -14,7 +14,7 @@ describe('ClientlistComponent', () => {
 
   beforeEach(waitForAsync(() => {
     mockClientService = jasmine.createSpyObj('ClientService', ['listAll', 'exemploErro']);
-    mockNgbModal = jasmine.createSpyObj('NgbModal', ['open', 'dismissAll']); // Add 'dismissAll' here
+    mockNgbModal = jasmine.createSpyObj('NgbModal', ['open', 'dismissAll']);
 
     TestBed.configureTestingModule({
       declarations: [ClientlistComponent],
@@ -28,36 +28,37 @@ describe('ClientlistComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ClientlistComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call listAll method on initialization', () => {
+  it('should call listAll method on initialization', fakeAsync(() => {
     const mockClients: Client[] = [
       { id: 1, nome: 'John Doe', phone: '123456789', cpf: '12345678901', adress: [], client: [] },
       { id: 2, nome: 'Jane Doe', phone: '987654321', cpf: '09876543210', adress: [], client: [] },
     ];
-  
+
     mockClientService.listAll.and.returnValue(of(mockClients));
-  
+
     fixture.detectChanges();
-  
+
+    tick();
+
     expect(mockClientService.listAll).toHaveBeenCalled();
     expect(component.lista).toEqual(mockClients);
-  });
+  }));
 
   it('should handle error on listAll method', () => {
-    spyOn(window, 'alert'); // Mocking the window.alert method
-  
-    const errorMessage = 'Error fetching addresses'; // Move this line inside the test
-    
-    mockClientService.listAll.and.returnValue(throwError({ message: errorMessage })); // Simulating an error using throwError
-    
+    spyOn(window, 'alert');
+
+    const errorMessage = 'Error fetching clients';
+
+    mockClientService.listAll.and.returnValue(throwError({ message: errorMessage }));
+
     component.listAll();
-    
+
     expect(mockClientService.listAll).toHaveBeenCalled();
     expect(window.alert).toHaveBeenCalledWith(errorMessage);
   });
@@ -74,23 +75,24 @@ describe('ClientlistComponent', () => {
   it('should handle error on exemploErro method', fakeAsync(() => {
     spyOn(window, 'alert');
 
+    const errorMessage = 'Error fetching clients';
+
     mockClientService.exemploErro.and.returnValue(throwError({ message: errorMessage }));
 
     component.exemploErro();
 
-    tick(); // Wait for the asynchronous code to complete
+    tick();
 
     expect(mockClientService.exemploErro).toHaveBeenCalled();
     expect(window.alert).toHaveBeenCalledWith('Exemplo de tratamento de erro/exception! Observe o erro no console!');
   }));
-    
 
   it('should call adicionar method and open modal', () => {
     const mockModalRef: NgbModalRef = {
       componentInstance: component,
       close: jasmine.createSpy('close'),
       dismiss: jasmine.createSpy('dismiss'),
-    } as unknown as NgbModalRef; // Type assertion
+    } as unknown as NgbModalRef;
 
     const mockModal = {};
     mockNgbModal.open.and.returnValue(mockModalRef);
@@ -105,7 +107,7 @@ describe('ClientlistComponent', () => {
       componentInstance: component,
       close: jasmine.createSpy('close'),
       dismiss: jasmine.createSpy('dismiss'),
-    } as unknown as NgbModalRef; // Type assertion
+    } as unknown as NgbModalRef;
 
     const mockModal = {};
     mockNgbModal.open.and.returnValue(mockModalRef);
@@ -122,7 +124,7 @@ describe('ClientlistComponent', () => {
 
   it('should call addOuEditarClient method', () => {
     spyOn(component, 'listAll');
-    spyOn(component.modalService, 'dismissAll'); // Fix the spy here
+    spyOn(component.modalService, 'dismissAll');
 
     const mockClient: Client = {
       id: 1, nome: 'John Doe', phone: '123456789', cpf: '12345678901', adress: [],
