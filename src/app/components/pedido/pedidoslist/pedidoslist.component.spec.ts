@@ -22,4 +22,4 @@ describe('PedidoslistComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+ });//aaaa
